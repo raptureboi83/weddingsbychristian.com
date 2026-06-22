@@ -1,10 +1,10 @@
 <x-filament-panels::page>
-    <x-filament-panels::form wire:submit="save">
+    <form wire:submit="save" class="space-y-6">
         {{ $this->form }}
 
-        <x-filament-panels::form.actions
-            :actions="$this->getCachedFormActions()"
-            :full-width="$this->hasFullWidthFormActions()"
+        <x-filament::actions
+            :actions="$this->getHeaderActions()"
+            alignment="end"
         />
-    </x-filament-panels::form>
+    </form>
 </x-filament-panels::page>
