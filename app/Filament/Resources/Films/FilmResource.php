@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Filament\Resources\Films;
+
+use App\Filament\Resources\Films\Pages\CreateFilm;
+use App\Filament\Resources\Films\Pages\EditFilm;
+use App\Filament\Resources\Films\Pages\ListFilms;
+use App\Filament\Resources\Films\Schemas\FilmForm;
+use App\Filament\Resources\Films\Tables\FilmsTable;
+use App\Models\Film;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+
+class FilmResource extends Resource
+{
+    protected static ?string $model = Film::class;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static ?string $navigationLabel = 'Films';
+
+    protected static ?string $modelLabel = 'Film';
+
+    protected static ?string $pluralModelLabel = 'Films';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+
+    protected static ?int $navigationSort = 20;
+
+    protected static ?string $recordTitleAttribute = 'title';
+
+    public static function form(Schema $schema): Schema
+    {
+        return FilmForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return FilmsTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListFilms::route('/'),
+            'create' => CreateFilm::route('/create'),
+            'edit' => EditFilm::route('/{record}/edit'),
+        ];
+    }
+}
