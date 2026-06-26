@@ -41,122 +41,174 @@ class SiteSettings extends Page implements HasForms
         $this->form->fill($this->record->toArray());
     }
 
+    public function getSubheading(): ?string
+    {
+        return 'Manage the general website settings used across the site, including branding, social links, SEO, and contact information.';
+    }
+
     public function form(Schema $schema): Schema
     {
         return $schema
             ->statePath('data')
             ->components([
                 Section::make('Brand')
+                    ->description('These settings control your main brand name, tagline, and logo details used across the website.')
                     ->schema([
                         TextInput::make('site_name')
-                            ->label('Site Name')
+                            ->label('Website name')
+                            ->helperText('The main name of your website or business.')
+                            ->placeholder('Weddings By Christian')
                             ->maxLength(255),
 
                         TextInput::make('site_tagline')
-                            ->label('Site Tagline')
+                            ->label('Website tagline')
+                            ->helperText('A short sentence that describes your brand or service.')
+                            ->placeholder('Cinematic wedding films with heart')
                             ->maxLength(255),
 
                         TextInput::make('logo_text')
-                            ->label('Logo Text')
+                            ->label('Logo text')
+                            ->helperText('Text version of your logo, if your design uses one.')
+                            ->placeholder('Weddings By Christian')
                             ->maxLength(255),
 
                         TextInput::make('logo_image_path')
-                            ->label('Logo Image Path')
+                            ->label('Logo image path')
+                            ->helperText('The saved file path for your logo image, if your site uses an uploaded logo.')
+                            ->placeholder('logos/site-logo.png')
                             ->maxLength(255),
                     ])
                     ->columns(2),
 
                 Section::make('Navigation Social Links')
+                    ->description('These links are used for social icons or social links in the main site navigation.')
                     ->schema([
                         TextInput::make('nav_facebook_url')
-                            ->label('Facebook URL')
+                            ->label('Facebook link')
+                            ->helperText('The Facebook page link shown in the site navigation.')
+                            ->placeholder('https://facebook.com/yourpage')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('nav_instagram_url')
-                            ->label('Instagram URL')
+                            ->label('Instagram link')
+                            ->helperText('The Instagram profile link shown in the site navigation.')
+                            ->placeholder('https://instagram.com/yourprofile')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('nav_youtube_url')
-                            ->label('YouTube URL')
+                            ->label('YouTube link')
+                            ->helperText('The YouTube channel or video link shown in the site navigation.')
+                            ->placeholder('https://youtube.com/yourchannel')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('nav_tiktok_url')
-                            ->label('TikTok URL')
+                            ->label('TikTok link')
+                            ->helperText('The TikTok profile link shown in the site navigation.')
+                            ->placeholder('https://tiktok.com/@yourprofile')
                             ->url()
                             ->maxLength(255),
                     ])
                     ->columns(2),
 
                 Section::make('Footer')
+                    ->description('These settings control the text and social links shown in the website footer.')
                     ->schema([
                         TextInput::make('footer_title')
-                            ->label('Footer Title')
+                            ->label('Footer heading')
+                            ->helperText('The main heading shown in the footer.')
+                            ->placeholder('Weddings By Christian')
                             ->maxLength(255),
 
                         TextInput::make('footer_copyright_text')
-                            ->label('Copyright Text')
+                            ->label('Copyright text')
+                            ->helperText('The copyright line shown at the bottom of the site.')
+                            ->placeholder('© 2026 Weddings By Christian. All rights reserved.')
                             ->maxLength(255),
 
                         TextInput::make('footer_facebook_url')
-                            ->label('Footer Facebook URL')
+                            ->label('Footer Facebook link')
+                            ->helperText('The Facebook link shown in the footer.')
+                            ->placeholder('https://facebook.com/yourpage')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('footer_instagram_url')
-                            ->label('Footer Instagram URL')
+                            ->label('Footer Instagram link')
+                            ->helperText('The Instagram link shown in the footer.')
+                            ->placeholder('https://instagram.com/yourprofile')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('footer_youtube_url')
-                            ->label('Footer YouTube URL')
+                            ->label('Footer YouTube link')
+                            ->helperText('The YouTube link shown in the footer.')
+                            ->placeholder('https://youtube.com/yourchannel')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('footer_tiktok_url')
-                            ->label('Footer TikTok URL')
+                            ->label('Footer TikTok link')
+                            ->helperText('The TikTok link shown in the footer.')
+                            ->placeholder('https://tiktok.com/@yourprofile')
                             ->url()
                             ->maxLength(255),
                     ])
                     ->columns(2),
 
                 Section::make('SEO')
+                    ->description('These settings help search engines and social media understand how your website should appear when shared.')
                     ->schema([
                         TextInput::make('seo_meta_title')
-                            ->label('Meta Title')
+                            ->label('SEO title')
+                            ->helperText('The title used in search results and browser tabs.')
+                            ->placeholder('Weddings By Christian | Wedding Videography')
                             ->maxLength(255),
 
                         Textarea::make('seo_meta_description')
-                            ->label('Meta Description')
+                            ->label('SEO description')
+                            ->helperText('A short summary used by search engines and social previews.')
+                            ->placeholder('Wedding videography for couples who want an emotional, cinematic film that preserves the feeling of the day.')
                             ->rows(4)
                             ->columnSpanFull(),
 
                         TextInput::make('seo_og_image_path')
-                            ->label('OG Image Path')
+                            ->label('Social share image path')
+                            ->helperText('The saved image path used when your website is shared on Facebook or other platforms.')
+                            ->placeholder('seo/og-image.jpg')
                             ->maxLength(255)
                             ->columnSpanFull(),
                     ])
                     ->columns(2),
 
                 Section::make('Contact')
+                    ->description('These settings control the main contact details used across the site and in the contact form.')
                     ->schema([
                         TextInput::make('contact_email')
-                            ->label('Contact Email')
+                            ->label('Public contact email')
+                            ->helperText('The email address shown publicly on the website.')
+                            ->placeholder('hello@weddingsbychristian.com')
                             ->email()
                             ->maxLength(255),
 
                         TextInput::make('contact_phone')
-                            ->label('Contact Phone')
+                            ->label('Public contact phone')
+                            ->helperText('The phone number shown publicly on the website.')
+                            ->placeholder('(555) 555-5555')
                             ->maxLength(255),
 
                         TextInput::make('contact_based_in')
-                            ->label('Based In')
+                            ->label('Based in')
+                            ->helperText('Your location or the area you are based in.')
+                            ->placeholder('Charleston, South Carolina')
                             ->maxLength(255),
 
                         TextInput::make('contact_form_recipient_email')
-                            ->label('Form Recipient Email')
+                            ->label('Contact form recipient email')
+                            ->helperText('Contact form submissions will be sent to this email address.')
+                            ->placeholder('hello@weddingsbychristian.com')
                             ->email()
                             ->maxLength(255),
                     ])

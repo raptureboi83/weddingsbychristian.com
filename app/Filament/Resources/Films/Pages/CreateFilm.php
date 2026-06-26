@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Films\Pages;
 
 use App\Filament\Resources\Films\FilmResource;
-use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\Pages\CreateRecord;
 
 class CreateFilm extends CreateRecord
 {

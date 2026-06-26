@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Films\Pages;
 
 use App\Filament\Resources\Films\FilmResource;
+use App\Filament\Resources\Pages\EditRecord;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
 class EditFilm extends EditRecord
 {

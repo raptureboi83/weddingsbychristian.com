@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\PackageSections\Pages;
 
+use App\Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\PackageSections\PackagesSectionResource;
-use Filament\Resources\Pages\CreateRecord;
 
 class CreatePackagesSection extends CreateRecord
 {

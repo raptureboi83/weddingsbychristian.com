@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\PackageItems\Pages;
 
 use App\Filament\Resources\PackageItems\PackageItemResource;
-use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\Pages\CreateRecord;
 
 class CreatePackageItem extends CreateRecord
 {

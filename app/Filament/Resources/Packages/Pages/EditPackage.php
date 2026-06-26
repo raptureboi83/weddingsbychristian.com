@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Packages\Pages;
 
+use App\Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\Packages\PackageResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
 class EditPackage extends EditRecord
 {

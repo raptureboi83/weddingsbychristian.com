@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\VendorCategories\Pages;
 
+use App\Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\VendorCategories\VendorCategoryResource;
 use Filament\Actions\DeleteAction;
-use Filament\Resources\Pages\EditRecord;
 
 class EditVendorCategory extends EditRecord
 {

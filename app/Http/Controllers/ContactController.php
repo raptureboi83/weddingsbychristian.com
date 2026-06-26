@@ -2,12 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactSection;
 use App\Models\ContactSubmission;
+use App\Models\SiteSetting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ContactController extends Controller
 {
+    public function index(): View
+    {
+        return view('contact.index', [
+            'siteSettings' => SiteSetting::current(),
+            'contactSection' => ContactSection::query()
+                ->where('is_published', true)
+                ->first(),
+        ]);
+    }
+
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
