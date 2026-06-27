@@ -172,6 +172,15 @@
                     />
                 </div>
 
+                <div class="media-picker-library__drawer-sort">
+                    <template x-for="col in [{key:'name',label:'Name'},{key:'type',label:'Type'},{key:'size',label:'Size'},{key:'created_at',label:'Date'}]">
+                        <button type="button" class="media-picker-library__sort-btn" :class="{ 'is-active': librarySortColumn === col.key }" @click="sortBy(col.key)">
+                            <span x-text="col.label"></span>
+                            <span x-show="librarySortColumn === col.key" x-text="librarySortDir === 'asc' ? ' \u2191' : ' \u2193'"></span>
+                        </button>
+                    </template>
+                </div>
+
                 <div class="media-picker-library__drawer-body" x-ref="drawerBody">
                     <template x-if="libraryLoading">
                         <p class="media-picker-library__drawer-empty">Loading...</p>
@@ -261,6 +270,10 @@
         .media-picker-library__drawer-input { width:100%; padding:0.55rem 0.8rem; border:1px solid var(--gray-700, rgba(148,163,184,0.25)); border-radius:0.5rem; background:var(--gray-800, rgba(148,163,184,0.06)); color:var(--color-white, #f3f4f6); font-size:0.875rem; outline:none; transition:border-color 0.15s,box-shadow 0.15s; }
         .media-picker-library__drawer-input::placeholder { color:var(--gray-500, #6b7280); }
         .media-picker-library__drawer-input:focus { border-color:var(--primary-500, #f59e0b); box-shadow:0 0 0 1px var(--primary-500, #f59e0b); }
+        .media-picker-library__drawer-sort { display:flex; gap:0.25rem; padding:0.5rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.06); }
+        .media-picker-library__sort-btn { flex:1; padding:0.35rem 0.25rem; border:1px solid transparent; border-radius:0.375rem; background:transparent; color:var(--gray-500, #6b7280); font-size:0.75rem; font-weight:500; cursor:pointer; text-align:center; transition:color 0.15s,background 0.15s,border-color 0.15s; }
+        .media-picker-library__sort-btn:hover { color:var(--gray-300, #d1d5db); background:rgba(255,255,255,0.04); }
+        .media-picker-library__sort-btn.is-active { color:var(--primary-500, #f59e0b); border-color:var(--gray-700, rgba(148,163,184,0.2)); background:color-mix(in srgb, var(--primary-500, #f59e0b) 8%, transparent); }
         .media-picker-library__drawer-body { flex:1; overflow-y:auto; padding:1.5rem 1.5rem; }
         .media-picker-library__drawer-empty { text-align:center; padding:2rem 0; color:var(--gray-500, #6b7280); font-size:0.875rem; }
         .media-picker-library__drawer-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(5.5rem,1fr)); gap:0.5rem; }
@@ -307,6 +320,8 @@
                 librarySearch: '',
                 libraryPage: 1,
                 libraryHasMore: false,
+                librarySortColumn: 'created_at',
+                librarySortDir: 'desc',
 
                 init() {
                     if (this.selectedPath) {
@@ -453,6 +468,8 @@
                     this.libraryOpen = true;
                     this.libraryPage = 1;
                     this.librarySearch = '';
+                    this.librarySortColumn = 'created_at';
+                    this.librarySortDir = 'desc';
                     this.libraryFiles = [];
                     await this.fetchLibrary();
                 },
@@ -461,12 +478,26 @@
                     this.libraryOpen = false;
                 },
 
+                sortBy(column) {
+                    if (this.librarySortColumn === column) {
+                        this.librarySortDir = this.librarySortDir === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        this.librarySortColumn = column;
+                        this.librarySortDir = 'desc';
+                    }
+                    this.libraryPage = 1;
+                    this.libraryFiles = [];
+                    this.fetchLibrary();
+                },
+
                 async fetchLibrary() {
                     this.libraryLoading = true;
                     try {
                         const params = new URLSearchParams({ page: this.libraryPage, per_page: 50 });
                         if (this.librarySearch) params.set('search', this.librarySearch);
                         if (this.imageOnly) params.set('type', 'image');
+                        if (this.librarySortColumn) params.set('sort', this.librarySortColumn);
+                        if (this.librarySortDir) params.set('direction', this.librarySortDir);
                         const res = await fetch(config.listUrl + '?' + params.toString());
                         if (!res.ok) throw new Error('Failed to load library');
                         const data = await res.json();

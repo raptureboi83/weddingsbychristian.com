@@ -177,7 +177,12 @@ class ChunkedMediaUploadController extends Controller
                 $q->where('name', 'like', "%{$s}%")
                   ->orWhere('original_name', 'like', "%{$s}%");
             }))
-            ->orderBy('created_at', 'desc');
+            ->when($request->input('sort'), function ($q, $sort) use ($request) {
+                $allowed = ['name', 'type', 'size', 'created_at'];
+                $sort = in_array($sort, $allowed) ? $sort : 'created_at';
+                $dir = $request->input('direction', 'desc') === 'asc' ? 'asc' : 'desc';
+                $q->orderBy($sort, $dir);
+            }, fn ($q) => $q->orderBy('created_at', 'desc'));
 
         $total = $query->count();
         $mediaFiles = $query->skip(($page - 1) * $perPage)
