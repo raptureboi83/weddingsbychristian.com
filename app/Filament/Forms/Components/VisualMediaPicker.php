@@ -17,8 +17,15 @@ class VisualMediaPicker
             ->label($label)
             ->view('filament.forms.components.visual-media-picker')
             ->viewData(function ($component) use ($directory, $acceptedFileTypes, $imageOnly) {
+                $initialValue = null;
+                try {
+                    $initialValue = $component->getState();
+                } catch (\Throwable) {
+                }
+
                 return [
                     'targetStatePath' => $component->getStatePath(),
+                    'initialValue' => $initialValue,
                     'uploadDirectory' => $directory,
                     'imageOnly' => $imageOnly,
                     'acceptedFileTypes' => $acceptedFileTypes,
