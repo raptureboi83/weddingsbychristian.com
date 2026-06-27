@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Testimonials\Pages;
 
 use App\Filament\Resources\Testimonials\TestimonialResource;
+use App\Filament\Widgets\TestimonialsSectionWidget;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
@@ -15,5 +16,17 @@ class ListTestimonials extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    protected function getFooterWidgets(): array
+    {
+        return [
+            TestimonialsSectionWidget::make(),
+        ];
+    }
+
+    public function getFooterWidgetsColumns(): int
+    {
+        return 1;
     }
 }

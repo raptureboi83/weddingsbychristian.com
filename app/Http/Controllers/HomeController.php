@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\AboutSection;
 use App\Models\ContactSection;
 use App\Models\Film;
+use App\Models\FilmsSection;
 use App\Models\HeroSection;
 use App\Models\Package;
 use App\Models\PackagesSection;
 use App\Models\PackageSharedBlock;
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
+use App\Models\TestimonialsSection;
 use App\Models\VendorCategory;
+use App\Models\VendorsSection;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -29,6 +32,18 @@ class HomeController extends Controller
             ->first();
 
         $packagesSection = PackagesSection::query()
+            ->where('is_published', true)
+            ->first();
+
+        $filmsSection = FilmsSection::query()
+            ->where('is_published', true)
+            ->first();
+
+        $testimonialsSection = TestimonialsSection::query()
+            ->where('is_published', true)
+            ->first();
+
+        $vendorsSection = VendorsSection::query()
             ->where('is_published', true)
             ->first();
 
@@ -75,7 +90,10 @@ class HomeController extends Controller
             'siteSettings' => $siteSettings,
             'heroSection' => $heroSection,
             'aboutSection' => $aboutSection,
+            'filmsSection' => $filmsSection,
             'packagesSection' => $packagesSection,
+            'testimonialsSection' => $testimonialsSection,
+            'vendorsSection' => $vendorsSection,
             'packages' => $packages,
             'packageSharedBlocks' => $packageSharedBlocks,
             'films' => $films,

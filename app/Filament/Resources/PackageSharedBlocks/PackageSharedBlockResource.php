@@ -26,9 +26,14 @@ class PackageSharedBlockResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Package Shared Blocks';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 33;
+    protected static ?int $navigationSort = 25;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 
     protected static ?string $recordTitleAttribute = 'title';
 

@@ -25,9 +25,9 @@ class ContactSubmissionResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Contact Submissions';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 40;
+    protected static ?int $navigationSort = 24;
 
     protected static ?string $recordTitleAttribute = 'name';
 

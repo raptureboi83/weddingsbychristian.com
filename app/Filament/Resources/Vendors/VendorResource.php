@@ -26,9 +26,9 @@ class VendorResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Vendors';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 35;
+    protected static ?int $navigationSort = 23;
 
     protected static ?string $recordTitleAttribute = 'name';
 

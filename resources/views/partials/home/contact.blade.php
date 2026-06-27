@@ -14,6 +14,17 @@
             </div>
 
             <div class="contact-card">
+                @if ($contactSection?->info_heading || $contactSection?->info_description)
+                    <div class="contact-info-text">
+                        @if ($contactSection?->info_heading)
+                            <h3>{{ $contactSection->info_heading }}</h3>
+                        @endif
+                        @if ($contactSection?->info_description)
+                            <p>{{ $contactSection->info_description }}</p>
+                        @endif
+                    </div>
+                @endif
+
                 <div class="contact-meta">
                     <div>
                         <div class="contact-meta-label">Email</div>
@@ -35,19 +46,34 @@
                     </div>
                 </div>
 
-                <button
-                    type="button"
-                    class="contact-email-cta contact-form-toggle"
-                    data-contact-form-toggle
-                    aria-controls="contact-form-panel"
-                    aria-expanded="{{ $isContactFormOpen ? 'true' : 'false' }}"
-                >
-                    Email About Your Date
-                </button>
+                @if ($contactSection?->cta_label && $contactSection?->cta_url)
+                    <a href="{{ $contactSection->cta_url }}" class="contact-email-cta">{{ $contactSection->cta_label }}</a>
+                @else
+                    <button
+                        type="button"
+                        class="contact-email-cta contact-form-toggle"
+                        data-contact-form-toggle
+                        aria-controls="contact-form-panel"
+                        aria-expanded="{{ $isContactFormOpen ? 'true' : 'false' }}"
+                    >
+                        Email About Your Date
+                    </button>
+                @endif
                 <p class="contact-email-note">
                     Include your wedding date, venue, and anything you already know about timing.
                     You can also email directly if you prefer.
                 </p>
+
+                @if ($contactSection?->form_heading || $contactSection?->form_description)
+                    <div class="contact-form-text">
+                        @if ($contactSection?->form_heading)
+                            <h4>{{ $contactSection->form_heading }}</h4>
+                        @endif
+                        @if ($contactSection?->form_description)
+                            <p>{{ $contactSection->form_description }}</p>
+                        @endif
+                    </div>
+                @endif
 
                 <div
                     id="contact-form-panel"

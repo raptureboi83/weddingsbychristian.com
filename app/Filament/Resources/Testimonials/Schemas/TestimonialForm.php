@@ -14,6 +14,10 @@ class TestimonialForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns([
+                'default' => 1,
+                'xl' => 2,
+            ])
             ->components([
                 Section::make('Testimonial Details')
                     ->description('Add a client review that can be shown on the website.')
@@ -67,6 +71,7 @@ class TestimonialForm
                             ->default(false),
                     ])
                     ->columns(2),
+
             ]);
     }
 }

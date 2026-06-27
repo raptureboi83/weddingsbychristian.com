@@ -1,11 +1,15 @@
 <section id="vendors" class="section section-alt-3">
     <div class="container container-narrow">
         <div class="section-heading section-heading-centered section-heading-spaced">
-            <div class="eyebrow">Partners</div>
-            <h2 class="section-title">Our Preferred Vendors</h2>
-            <div class="section-copy section-copy-centered">
-                If you would like to connect with anyone, please click their name for a website.
-            </div>
+            <div class="eyebrow">{{ $vendorsSection?->eyebrow ?: 'Partners' }}</div>
+            <h2 class="section-title">{{ $vendorsSection?->title ?: 'Our Preferred Vendors' }}</h2>
+            @if ($vendorsSection?->description)
+                <div class="section-copy section-copy-centered">{{ $vendorsSection->description }}</div>
+            @else
+                <div class="section-copy section-copy-centered">
+                    If you would like to connect with anyone, please click their name for a website.
+                </div>
+            @endif
         </div>
 
         @foreach ($vendorCategories as $category)

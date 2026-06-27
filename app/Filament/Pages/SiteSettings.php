@@ -3,7 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\SiteSetting;
-use Filament\Actions\Action;
+use App\Filament\Forms\Components\VisualMediaPicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -24,7 +24,7 @@ class SiteSettings extends Page implements HasForms
 
     protected static ?string $title = 'Site Settings';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Page Settings';
 
     protected static ?int $navigationSort = 10;
 
@@ -70,43 +70,41 @@ class SiteSettings extends Page implements HasForms
                             ->label('Logo text')
                             ->helperText('Text version of your logo, if your design uses one.')
                             ->placeholder('Weddings By Christian')
-                            ->maxLength(255),
+                            ->maxLength(255)
+                            ->columnSpanFull(),
 
-                        TextInput::make('logo_image_path')
-                            ->label('Logo image path')
-                            ->helperText('The saved file path for your logo image, if your site uses an uploaded logo.')
-                            ->placeholder('logos/site-logo.png')
-                            ->maxLength(255),
+                        VisualMediaPicker::make('logo_image_path', 'Logo image', 'logos', imageOnly: true)
+                            ->columnSpanFull(),
                     ])
                     ->columns(2),
 
-                Section::make('Navigation Social Links')
-                    ->description('These links are used for social icons or social links in the main site navigation.')
+                Section::make('Social Links')
+                    ->description('Social media links shown in both the site navigation and footer.')
                     ->schema([
                         TextInput::make('nav_facebook_url')
                             ->label('Facebook link')
-                            ->helperText('The Facebook page link shown in the site navigation.')
+                            ->helperText('The Facebook page link.')
                             ->placeholder('https://facebook.com/yourpage')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('nav_instagram_url')
                             ->label('Instagram link')
-                            ->helperText('The Instagram profile link shown in the site navigation.')
+                            ->helperText('The Instagram profile link.')
                             ->placeholder('https://instagram.com/yourprofile')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('nav_youtube_url')
                             ->label('YouTube link')
-                            ->helperText('The YouTube channel or video link shown in the site navigation.')
+                            ->helperText('The YouTube channel or video link.')
                             ->placeholder('https://youtube.com/yourchannel')
                             ->url()
                             ->maxLength(255),
 
                         TextInput::make('nav_tiktok_url')
                             ->label('TikTok link')
-                            ->helperText('The TikTok profile link shown in the site navigation.')
+                            ->helperText('The TikTok profile link.')
                             ->placeholder('https://tiktok.com/@yourprofile')
                             ->url()
                             ->maxLength(255),
@@ -114,7 +112,7 @@ class SiteSettings extends Page implements HasForms
                     ->columns(2),
 
                 Section::make('Footer')
-                    ->description('These settings control the text and social links shown in the website footer.')
+                    ->description('These settings control the text shown in the website footer.')
                     ->schema([
                         TextInput::make('footer_title')
                             ->label('Footer heading')
@@ -126,34 +124,6 @@ class SiteSettings extends Page implements HasForms
                             ->label('Copyright text')
                             ->helperText('The copyright line shown at the bottom of the site.')
                             ->placeholder('© 2026 Weddings By Christian. All rights reserved.')
-                            ->maxLength(255),
-
-                        TextInput::make('footer_facebook_url')
-                            ->label('Footer Facebook link')
-                            ->helperText('The Facebook link shown in the footer.')
-                            ->placeholder('https://facebook.com/yourpage')
-                            ->url()
-                            ->maxLength(255),
-
-                        TextInput::make('footer_instagram_url')
-                            ->label('Footer Instagram link')
-                            ->helperText('The Instagram link shown in the footer.')
-                            ->placeholder('https://instagram.com/yourprofile')
-                            ->url()
-                            ->maxLength(255),
-
-                        TextInput::make('footer_youtube_url')
-                            ->label('Footer YouTube link')
-                            ->helperText('The YouTube link shown in the footer.')
-                            ->placeholder('https://youtube.com/yourchannel')
-                            ->url()
-                            ->maxLength(255),
-
-                        TextInput::make('footer_tiktok_url')
-                            ->label('Footer TikTok link')
-                            ->helperText('The TikTok link shown in the footer.')
-                            ->placeholder('https://tiktok.com/@yourprofile')
-                            ->url()
                             ->maxLength(255),
                     ])
                     ->columns(2),
@@ -174,11 +144,7 @@ class SiteSettings extends Page implements HasForms
                             ->rows(4)
                             ->columnSpanFull(),
 
-                        TextInput::make('seo_og_image_path')
-                            ->label('Social share image path')
-                            ->helperText('The saved image path used when your website is shared on Facebook or other platforms.')
-                            ->placeholder('seo/og-image.jpg')
-                            ->maxLength(255)
+                        VisualMediaPicker::make('seo_og_image_path', 'Social share image', 'seo', imageOnly: true)
                             ->columnSpanFull(),
                     ])
                     ->columns(2),
@@ -214,15 +180,6 @@ class SiteSettings extends Page implements HasForms
                     ])
                     ->columns(2),
             ]);
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label('Save Changes')
-                ->submit('save'),
-        ];
     }
 
     public function save(): void

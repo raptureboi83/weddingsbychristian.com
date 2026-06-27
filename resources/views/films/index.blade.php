@@ -63,10 +63,11 @@
                         <div class="film-card-body">
                             <h3 class="film-card-title">{{ $film->title }}</h3>
 
-                            @if ($film->wedding_date || $film->location)
+                            @if ($film->wedding_date || $film->venue || $film->location)
                                 <div class="film-meta">
                                     {{ collect([
                                         optional($film->wedding_date)->format('F j, Y'),
+                                        $film->venue,
                                         $film->location,
                                     ])->filter()->implode(' • ') }}
                                 </div>

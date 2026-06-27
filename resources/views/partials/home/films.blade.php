@@ -1,8 +1,11 @@
 <section id="films" class="section section-alt-3">
     <div class="container">
         <div class="section-heading section-heading-spaced">
-            <div class="eyebrow">Selected Work</div>
-            <h2 class="section-title">Featured Films</h2>
+            <div class="eyebrow">{{ $filmsSection?->eyebrow ?: 'Selected Work' }}</div>
+            <h2 class="section-title">{{ $filmsSection?->title ?: 'Featured Films' }}</h2>
+            @if ($filmsSection?->description)
+                <div class="section-copy">{{ $filmsSection->description }}</div>
+            @endif
         </div>
 
         <div class="film-grid">

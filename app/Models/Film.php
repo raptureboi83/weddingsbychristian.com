@@ -42,8 +42,28 @@ class Film extends Model
             ->orderBy('sort_order');
     }
 
+    public function scopeFeatured(Builder $query): Builder
+    {
+        return $query
+            ->published()
+            ->where('is_featured', true)
+            ->orderBy('sort_order')
+            ->orderByDesc('wedding_date');
+    }
+
     public function scopeHomepagePreview(Builder $query): Builder
     {
+        $hasFeatured = static::query()
+            ->published()
+            ->where('is_featured', true)
+            ->exists();
+
+        if ($hasFeatured) {
+            return $query
+                ->featured()
+                ->limit(3);
+        }
+
         return $query
             ->published()
             ->ordered()

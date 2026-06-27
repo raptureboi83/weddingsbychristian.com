@@ -26,9 +26,9 @@ class PackageResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Packages';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 30;
+    protected static ?int $navigationSort = 21;
 
     protected static ?string $recordTitleAttribute = 'name';
 

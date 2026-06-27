@@ -5,6 +5,7 @@ namespace App\Filament\Resources\VendorCategories\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TernaryFilter;
@@ -40,8 +41,7 @@ class VendorCategoriesTable
                     ->label('Vendors')
                     ->sortable(),
 
-                IconColumn::make('is_published')
-                    ->boolean()
+                CheckboxColumn::make('is_published')
                     ->label('Published')
                     ->sortable(),
 

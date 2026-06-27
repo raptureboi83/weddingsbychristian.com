@@ -126,6 +126,7 @@ class ContactSubmissionForm
                             ->columnSpanFull(),
                     ])
                     ->columns(2),
+
             ]);
     }
 }

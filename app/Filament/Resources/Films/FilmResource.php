@@ -26,7 +26,7 @@ class FilmResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Films';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
     protected static ?int $navigationSort = 20;
 

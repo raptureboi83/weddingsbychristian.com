@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Packages\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TernaryFilter;
@@ -48,13 +49,11 @@ class PackagesTable
                     ->label('Items')
                     ->sortable(),
 
-                IconColumn::make('is_featured')
-                    ->boolean()
+                CheckboxColumn::make('is_featured')
                     ->label('Featured')
                     ->sortable(),
 
-                IconColumn::make('is_active')
-                    ->boolean()
+                CheckboxColumn::make('is_active')
                     ->label('Active')
                     ->sortable(),
 

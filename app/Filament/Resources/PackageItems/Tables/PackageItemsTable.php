@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PackageItems\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -31,8 +32,7 @@ class PackageItemsTable
                     ->limit(60)
                     ->toggleable(),
 
-                IconColumn::make('is_highlighted')
-                    ->boolean()
+                CheckboxColumn::make('is_highlighted')
                     ->label('Highlighted'),
 
                 TextColumn::make('sort_order')

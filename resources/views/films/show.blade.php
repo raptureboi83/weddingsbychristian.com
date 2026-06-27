@@ -24,10 +24,11 @@
                 <div class="film-detail-label">Wedding Film</div>
                 <h1 class="film-detail-title">{{ $film->title }}</h1>
 
-                @if ($film->wedding_date || $film->location)
+                @if ($film->wedding_date || $film->venue || $film->location)
                     <div class="film-detail-meta">
                         {{ collect([
                             optional($film->wedding_date)->format('F j, Y'),
+                            $film->venue,
                             $film->location,
                         ])->filter()->implode(' • ') }}
                     </div>

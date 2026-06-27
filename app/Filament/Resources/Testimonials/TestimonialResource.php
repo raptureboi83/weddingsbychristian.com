@@ -26,9 +26,9 @@ class TestimonialResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Testimonials';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 25;
+    protected static ?int $navigationSort = 22;
 
     protected static ?string $recordTitleAttribute = 'couple_names';
 

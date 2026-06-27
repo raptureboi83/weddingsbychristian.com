@@ -11,6 +11,7 @@ class HeroSection extends Model
         'title',
         'description',
         'background_media_path',
+        'background_fallback_image_path',
         'is_published',
     ];
 

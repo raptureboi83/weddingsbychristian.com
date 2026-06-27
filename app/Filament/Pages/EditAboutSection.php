@@ -3,8 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\AboutSection;
-use Filament\Actions\Action;
-use Filament\Forms\Components\FileUpload;
+use App\Filament\Forms\Components\VisualMediaPicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -27,7 +26,7 @@ class EditAboutSection extends Page implements HasForms
 
     protected static ?string $title = 'About Section';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Page Settings';
 
     protected static ?int $navigationSort = 12;
 
@@ -76,19 +75,11 @@ class EditAboutSection extends Page implements HasForms
                             ->required()
                             ->live(),
 
-                        FileUpload::make('image_path')
-                            ->label('About Image')
-                            ->disk('public')
-                            ->directory('about/images')
-                            ->image()
+                        VisualMediaPicker::make('image_path', 'About Image', 'about/images', imageOnly: true)
                             ->visible(fn (callable $get) => $get('media_type') === 'image')
                             ->columnSpanFull(),
 
-                        FileUpload::make('video_path')
-                            ->label('About Video')
-                            ->disk('public')
-                            ->directory('about/videos')
-                            ->acceptedFileTypes(['video/mp4', 'video/quicktime', 'video/webm'])
+                        VisualMediaPicker::make('video_path', 'About Video', 'about/videos', acceptedFileTypes: ['video/mp4', 'video/quicktime', 'video/webm'])
                             ->visible(fn (callable $get) => $get('media_type') === 'video')
                             ->columnSpanFull(),
                     ])
@@ -101,15 +92,6 @@ class EditAboutSection extends Page implements HasForms
                             ->default(true),
                     ]),
             ]);
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label('Save Changes')
-                ->submit('save'),
-        ];
     }
 
     public function save(): void

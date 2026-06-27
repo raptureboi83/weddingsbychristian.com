@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Films\Schemas;
 
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -76,22 +75,40 @@ class FilmForm
                             ->required()
                             ->dehydrated(true),
 
-                        ViewField::make('video_path_upload')
-                            ->hiddenLabel()
-                            ->view('filament.forms.components.chunked-video-upload')
-                            ->viewData([
-                                'uploadUrl' => route('films.upload.chunk'),
-                                'finalizeUrl' => route('films.upload.finalize'),
-                            ])
+                        Hidden::make('thumbnail_path')
+                            ->dehydrated(true),
+
+                        ViewField::make('video_path_ui')
+                            ->label('Film video')
+                            ->helperText('Upload a new video or choose one from the media library.')
+                            ->view('filament.forms.components.media-picker-with-library')
+                            ->viewData(function ($component) {
+                                $state = $component->getContainer()->getRawState();
+                                return [
+                                    'targetStatePath' => $component->getContainer()->getStatePath() . '.video_path',
+                                    'existingPath' => data_get($state, 'video_path'),
+                                    'uploadDirectory' => 'media',
+                                    'imageOnly' => false,
+                                ];
+                            })
+                            ->dehydrated(false)
                             ->columnSpanFull(),
 
-                        FileUpload::make('thumbnail_path')
+                        ViewField::make('thumbnail_path_ui')
                             ->label('Thumbnail image')
-                            ->helperText('Upload the image shown before the video plays or in the film grid.')
-                            ->disk('public')
-                            ->directory('films/thumbnails')
-                            ->image()
-                            ->required(),
+                            ->helperText('Upload a new thumbnail or choose one from the media library.')
+                            ->view('filament.forms.components.media-picker-with-library')
+                            ->viewData(function ($component) {
+                                $state = $component->getContainer()->getRawState();
+                                return [
+                                    'targetStatePath' => $component->getContainer()->getStatePath() . '.thumbnail_path',
+                                    'existingPath' => data_get($state, 'thumbnail_path'),
+                                    'uploadDirectory' => 'films/thumbnails',
+                                    'imageOnly' => true,
+                                ];
+                            })
+                            ->dehydrated(false)
+                            ->columnSpanFull(),
 
                         TextInput::make('thumbnail_alt')
                             ->label('Thumbnail alt text')
@@ -123,6 +140,7 @@ class FilmForm
                     ])
                     ->columns(1)
                         ->columnSpanFull(),
+
             ]);
     }
 }

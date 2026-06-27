@@ -2,12 +2,16 @@
     @if ($heroMedia)
         <div class="hero-media">
             @if (\Illuminate\Support\Str::endsWith(strtolower($heroMedia), ['.mp4', '.webm', '.ogg']))
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline @if ($heroFallback) poster="{{ $heroFallback }}" @endif>
                     <source src="{{ $heroMedia }}">
                 </video>
             @else
                 <img src="{{ $heroMedia }}" alt="{{ $heroTitle }}">
             @endif
+        </div>
+    @elseif ($heroFallback)
+        <div class="hero-media">
+            <img src="{{ $heroFallback }}" alt="{{ $heroTitle }}">
         </div>
     @endif
 

@@ -23,10 +23,10 @@
     ];
 
     $socialLinks = array_filter([
-        ['network' => 'facebook', 'url' => $siteSettings->nav_facebook_url ?: $siteSettings->footer_facebook_url],
-        ['network' => 'instagram', 'url' => $siteSettings->nav_instagram_url ?: $siteSettings->footer_instagram_url],
-        ['network' => 'youtube', 'url' => $siteSettings->nav_youtube_url ?: $siteSettings->footer_youtube_url],
-        ['network' => 'tiktok', 'url' => $siteSettings->nav_tiktok_url ?: $siteSettings->footer_tiktok_url],
+        ['network' => 'facebook', 'url' => $siteSettings->nav_facebook_url],
+        ['network' => 'instagram', 'url' => $siteSettings->nav_instagram_url],
+        ['network' => 'youtube', 'url' => $siteSettings->nav_youtube_url],
+        ['network' => 'tiktok', 'url' => $siteSettings->nav_tiktok_url],
     ], fn ($item) => filled($item['url']));
 
     $iconPaths = [
@@ -54,19 +54,19 @@
             @foreach ($navItems as $item)
                 <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
             @endforeach
-
-            @if (!empty($socialLinks))
-                <div class="social-links site-nav-socials">
-                    @foreach ($socialLinks as $link)
-                        <a href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ucfirst($link['network']) }}">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="{{ $iconPaths[$link['network']] }}"></path>
-                            </svg>
-                        </a>
-                    @endforeach
-                </div>
-            @endif
         </div>
+
+        @if (!empty($socialLinks))
+            <div class="social-links site-nav-socials">
+                @foreach ($socialLinks as $link)
+                    <a href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ucfirst($link['network']) }}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="{{ $iconPaths[$link['network']] }}"></path>
+                        </svg>
+                    </a>
+                @endforeach
+            </div>
+        @endif
 
         <button
             type="button"

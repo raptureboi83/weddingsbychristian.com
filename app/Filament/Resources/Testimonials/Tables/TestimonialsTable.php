@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Testimonials\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TernaryFilter;
@@ -41,13 +42,11 @@ class TestimonialsTable
                     ->sortable()
                     ->toggleable(),
 
-                IconColumn::make('is_featured')
-                    ->boolean()
+                CheckboxColumn::make('is_featured')
                     ->label('Featured')
                     ->sortable(),
 
-                IconColumn::make('is_published')
-                    ->boolean()
+                CheckboxColumn::make('is_published')
                     ->label('Published')
                     ->sortable(),
 

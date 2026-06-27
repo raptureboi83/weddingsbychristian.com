@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Vendors\Schemas;
 
+use App\Filament\Forms\Components\VisualMediaPicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -25,7 +26,39 @@ class VendorForm
                             ->relationship('category', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->label('Category name')
+                                    ->placeholder('Photographers')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug((string) $state))),
+
+                                TextInput::make('slug')
+                                    ->label('URL name')
+                                    ->placeholder('photographers')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->unique(),
+
+                                Textarea::make('description')
+                                    ->label('Description')
+                                    ->placeholder('Trusted photographers I love working with.')
+                                    ->rows(3)
+                                    ->columnSpanFull(),
+
+                                TextInput::make('sort_order')
+                                    ->label('Display order')
+                                    ->helperText('Lower numbers appear first.')
+                                    ->numeric()
+                                    ->default(0),
+
+                                Toggle::make('is_published')
+                                    ->label('Show on website')
+                                    ->default(true),
+                            ]),
 
                         TextInput::make('name')
                             ->label('Vendor name')
@@ -118,19 +151,11 @@ class VendorForm
                     ->columns(2),
 
                 Section::make('Media')
-                    ->description('Add image paths if your site uses stored logo or cover images for vendors.')
+                    ->description('Upload or choose logo and cover images for this vendor.')
                     ->schema([
-                        TextInput::make('logo_path')
-                            ->label('Logo file path')
-                            ->helperText('The saved path to this vendor’s logo image, if used.')
-                            ->placeholder('vendors/logos/vendor-logo.png')
-                            ->maxLength(255),
+                        VisualMediaPicker::make('logo_path', 'Logo image', 'vendors/logos', imageOnly: true),
 
-                        TextInput::make('cover_image_path')
-                            ->label('Cover image file path')
-                            ->helperText('The saved path to this vendor’s cover image, if used.')
-                            ->placeholder('vendors/covers/vendor-cover.jpg')
-                            ->maxLength(255),
+                        VisualMediaPicker::make('cover_image_path', 'Cover image', 'vendors/covers', imageOnly: true),
                     ])
                     ->columns(2),
 
@@ -154,6 +179,7 @@ class VendorForm
                             ->default(false),
                     ])
                     ->columns(3),
+
             ]);
     }
 }

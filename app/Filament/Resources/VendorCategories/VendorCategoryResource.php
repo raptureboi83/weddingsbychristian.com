@@ -26,9 +26,14 @@ class VendorCategoryResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Vendor Categories';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 34;
+    protected static ?int $navigationSort = 23;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 
     protected static ?string $recordTitleAttribute = 'name';
 

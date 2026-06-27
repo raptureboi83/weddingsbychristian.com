@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Vendors\Pages;
 
 use App\Filament\Resources\Vendors\VendorResource;
+use App\Filament\Widgets\VendorsSectionWidget;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
@@ -15,5 +16,17 @@ class ListVendors extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    protected function getFooterWidgets(): array
+    {
+        return [
+            VendorsSectionWidget::make(),
+        ];
+    }
+
+    public function getFooterWidgetsColumns(): int
+    {
+        return 1;
     }
 }

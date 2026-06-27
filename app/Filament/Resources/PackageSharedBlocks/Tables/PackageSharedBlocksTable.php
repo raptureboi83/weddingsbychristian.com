@@ -5,6 +5,7 @@ namespace App\Filament\Resources\PackageSharedBlocks\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -41,8 +42,7 @@ class PackageSharedBlocksTable
                     ->label('CTA Label')
                     ->toggleable(),
 
-                IconColumn::make('is_active')
-                    ->boolean()
+                CheckboxColumn::make('is_active')
                     ->label('Active')
                     ->sortable(),
 

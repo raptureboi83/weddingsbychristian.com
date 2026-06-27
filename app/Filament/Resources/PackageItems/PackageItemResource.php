@@ -22,9 +22,14 @@ class PackageItemResource extends Resource
 
     protected static ?string $navigationLabel = 'Package Items';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website Content';
+    protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 31;
+    protected static ?int $navigationSort = 27;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 
     protected static ?string $recordTitleAttribute = 'label';
 

@@ -7,6 +7,10 @@
             @if ($packagesSection?->description)
                 <div class="section-copy section-copy-centered">{{ $packagesSection->description }}</div>
             @endif
+
+            @if ($packagesSection?->intro)
+                <div class="section-copy section-copy-centered section-copy-spaced">{{ $packagesSection->intro }}</div>
+            @endif
         </div>
 
         <div class="package-grid">
@@ -66,6 +70,22 @@
                         @endif
                     </div>
                 @endforeach
+            </div>
+        @endif
+
+        @if ($packagesSection?->bottom_heading || $packagesSection?->bottom_description || ($packagesSection?->cta_label && $packagesSection?->cta_url))
+            <div class="packages-bottom">
+                @if ($packagesSection->bottom_heading)
+                    <h2>{{ $packagesSection->bottom_heading }}</h2>
+                @endif
+                @if ($packagesSection->bottom_description)
+                    <div class="section-copy">{{ $packagesSection->bottom_description }}</div>
+                @endif
+                @if ($packagesSection->cta_label && $packagesSection->cta_url)
+                    <div class="packages-bottom-cta">
+                        <a href="{{ $packagesSection->cta_url }}" class="button-primary">{{ $packagesSection->cta_label }}</a>
+                    </div>
+                @endif
             </div>
         @endif
     </div>

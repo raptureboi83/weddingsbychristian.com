@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Models\ContactSection;
-use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -25,9 +24,14 @@ class EditContactSection extends Page implements HasForms
 
     protected static ?string $title = 'Contact Section';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Website';
+    protected static string|\UnitEnum|null $navigationGroup = 'Page Sections';
 
-    protected static ?int $navigationSort = 20;
+    protected static ?int $navigationSort = 14;
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
 
     protected string $view = 'filament.pages.edit-contact-section';
 
@@ -139,15 +143,6 @@ class EditContactSection extends Page implements HasForms
                             ->default(true),
                     ]),
             ]);
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label('Save Changes')
-                ->submit('save'),
-        ];
     }
 
     public function save(): void

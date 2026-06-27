@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="footer-col footer-col-center">
-                    <a href="#hero" class="footer-brand-link">{{ $siteName }}</a>
+                    <a href="#hero" class="footer-brand-link">{{ $siteSettings->footer_title ?: $siteName }}</a>
                 </div>
 
                 <div class="footer-col footer-col-right">
@@ -18,7 +18,7 @@
                             @foreach ($footerLinks as $link)
                                 <a href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ ucfirst($link['network']) }}">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="{{ $link['icon'] }}"></path>
+                                        <path d="{{ $iconPaths[$link['network']] }}"></path>
                                     </svg>
                                 </a>
                             @endforeach

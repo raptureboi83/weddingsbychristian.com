@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Controllers\ChunkedFilmUploadController;
+use App\Http\Controllers\ChunkedMediaUploadController;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -17,6 +19,7 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -29,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->passwordReset()
+            ->brandName('WBC Admin')
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -55,6 +59,22 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->authenticatedRoutes(function () {
+                Route::post('/films/upload/chunk', [ChunkedFilmUploadController::class, 'chunk'])
+                    ->name('films.upload.chunk');
+
+                Route::post('/films/upload/finalize', [ChunkedFilmUploadController::class, 'finalize'])
+                    ->name('films.upload.finalize');
+
+                Route::post('/media/upload/chunk', [ChunkedMediaUploadController::class, 'chunk'])
+                    ->name('media.upload.chunk');
+
+                Route::post('/media/upload/finalize', [ChunkedMediaUploadController::class, 'finalize'])
+                    ->name('media.upload.finalize');
+
+                Route::get('/media/list', [ChunkedMediaUploadController::class, 'list'])
+                    ->name('media.list');
+            });
     }
 }

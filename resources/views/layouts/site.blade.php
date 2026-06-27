@@ -7,6 +7,22 @@
 
     @if ($siteSettings->seo_meta_description)
         <meta name="description" content="{{ $siteSettings->seo_meta_description }}">
+        <meta property="og:description" content="{{ $siteSettings->seo_meta_description }}">
+    @endif
+
+    @if ($siteSettings->seo_og_image_path)
+        @php
+            $ogResolve = static function (?string $path): ?string {
+                if (blank($path)) return null;
+                if (\Illuminate\Support\Str::startsWith($path, ['http://', 'https://', '//', 'data:'])) return $path;
+                if (\Illuminate\Support\Str::startsWith($path, ['/'])) return $path;
+                return asset('storage/' . ltrim($path, '/'));
+            };
+            $ogUrl = $ogResolve($siteSettings->seo_og_image_path);
+        @endphp
+        @if ($ogUrl)
+            <meta property="og:image" content="{{ $ogUrl }}">
+        @endif
     @endif
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -164,7 +180,6 @@
             min-height: var(--nav-offset);
             display: flex;
             align-items: center;
-            justify-content: space-between;
             gap: 16px;
         }
 
@@ -173,6 +188,7 @@
             align-items: center;
             gap: 12px;
             min-height: 44px;
+            flex: 1;
         }
 
         .site-brand-text {
@@ -211,6 +227,10 @@
         }
 
         .site-nav-socials {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             padding-left: 20px;
             border-left: 1px solid rgba(255, 255, 255, 0.10);
         }
@@ -310,6 +330,10 @@
 
         @media (max-width: 900px) {
             .site-nav-links {
+                display: none;
+            }
+
+            .site-nav-socials {
                 display: none;
             }
 

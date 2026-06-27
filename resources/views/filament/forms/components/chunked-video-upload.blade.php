@@ -1,6 +1,8 @@
 @php
     $statePath = 'data.video_path';
-    $existingVideoPath = data_get($this->data ?? [], 'video_path');
+    $existingVideoPath = data_get($this?->data ?? [], 'video_path');
+    $uploadUrl = route('filament.admin.films.upload.chunk');
+    $finalizeUrl = route('filament.admin.films.upload.finalize');
 @endphp
 
 <div
