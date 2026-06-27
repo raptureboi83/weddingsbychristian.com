@@ -7,7 +7,6 @@
 <div
     x-data="visualMediaPicker({
         statePath: @js($targetStatePath),
-        existingPath: @js($existingPath ?? ''),
         uploadChunkUrl: @js($chunkUrl),
         finalizeUrl: @js($finalizeUrl),
         listUrl: @js($listUrl),
@@ -280,11 +279,10 @@
         function visualMediaPicker(config) {
             return {
                 statePath: config.statePath,
-                existingPath: config.existingPath,
                 directory: config.directory,
                 csrf: config.csrf,
                 chunkSize: 10 * 1024 * 1024,
-                selectedPath: config.existingPath || '',
+                selectedPath: '',
                 selectedPreviewUrl: '',
                 selectedName: '',
                 selectedIsImage: false,
@@ -310,7 +308,9 @@
                 libraryHasMore: false,
 
                 init() {
-                    if (this.selectedPath) {
+                    const hidden = this.$root.querySelector('input[type="hidden"]');
+                    if (hidden?.value) {
+                        this.selectedPath = hidden.value;
                         this.selectedName = this.selectedPath.split('/').pop();
                         this.selectedPreviewUrl = '/storage/' + this.selectedPath;
                         this.selectedIsImage = /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico)$/i.test(this.selectedPath);
