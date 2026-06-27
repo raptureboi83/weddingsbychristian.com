@@ -16,14 +16,21 @@ class VisualMediaPicker
         return ViewField::make($fieldName)
             ->label($label)
             ->view('filament.forms.components.visual-media-picker')
-            ->viewData(function ($component) use ($directory, $acceptedFileTypes, $imageOnly) {
+            ->viewData(function ($component) use ($directory, $acceptedFileTypes, $imageOnly, $fieldName) {
+                $statePath = $component->getStatePath();
+
+                $existing = null;
                 $container = $component->getContainer();
-                $fieldPath = $container ? $container->getStatePath() . '.' . $component->getName() : $fieldName;
-                $state = $container ? $container->getRawState() : [];
+                if ($container) {
+                    try {
+                        $existing = data_get($container->getRawState(), $component->getName());
+                    } catch (\Throwable) {
+                    }
+                }
 
                 return [
-                    'targetStatePath' => $fieldPath,
-                    'existingPath' => data_get($state, $component->getName()),
+                    'targetStatePath' => $statePath,
+                    'existingPath' => $existing,
                     'uploadDirectory' => $directory,
                     'imageOnly' => $imageOnly,
                     'acceptedFileTypes' => $acceptedFileTypes,
