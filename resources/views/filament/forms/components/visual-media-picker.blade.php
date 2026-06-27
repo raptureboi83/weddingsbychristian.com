@@ -310,11 +310,27 @@
 
                 init() {
                     if (this.selectedPath) {
-                        this.selectedName = this.selectedPath.split('/').pop();
-                        this.selectedPreviewUrl = '/storage/' + this.selectedPath;
-                        this.selectedIsImage = /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico)$/i.test(this.selectedPath);
-                        this.selectedIsVideo = /\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v)$/i.test(this.selectedPath);
+                        this.setSelected(this.selectedPath);
+                        return;
                     }
+                    this.$nextTick(() => {
+                        try {
+                            const val = this.$wire.get(this.statePath);
+                            if (val && typeof val.then === 'function') {
+                                val.then(v => { if (v) this.setSelected(v); });
+                            } else if (val) {
+                                this.setSelected(val);
+                            }
+                        } catch (e) {}
+                    });
+                },
+
+                setSelected(val) {
+                    this.selectedPath = val;
+                    this.selectedName = val.split('/').pop();
+                    this.selectedPreviewUrl = '/storage/' + val;
+                    this.selectedIsImage = /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico)$/i.test(val);
+                    this.selectedIsVideo = /\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v)$/i.test(val);
                 },
 
                 async setFormValue(path, value) {

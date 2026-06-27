@@ -17,14 +17,20 @@ class VisualMediaPicker
             ->label($label)
             ->view('filament.forms.components.visual-media-picker')
             ->viewData(function ($component) use ($directory, $acceptedFileTypes, $imageOnly) {
+                $statePath = $component->getStatePath();
+                $fieldName = $component->getName();
                 $initialValue = null;
-                try {
-                    $initialValue = $component->getState();
-                } catch (\Throwable) {
+                $container = $component->getContainer();
+                if ($container) {
+                    try {
+                        $raw = $container->getRawState();
+                        $initialValue = data_get($raw, $statePath) ?? data_get($raw, $fieldName);
+                    } catch (\Throwable) {
+                    }
                 }
 
                 return [
-                    'targetStatePath' => $component->getStatePath(),
+                    'targetStatePath' => $statePath,
                     'initialValue' => $initialValue,
                     'uploadDirectory' => $directory,
                     'imageOnly' => $imageOnly,
