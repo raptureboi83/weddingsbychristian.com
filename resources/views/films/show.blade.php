@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('title', $film->title . ' — ' . ($siteSettings->site_name ?: 'Weddings By Christian'))
-@section('page_css', asset('css/films-show.css'))
+@section('page_css', asset('css/films-show.css') . '?v=' . @filemtime(public_path('css/films-show.css')))
 
 @section('content')
 <main class="film-detail-wrap">

@@ -35,7 +35,7 @@ class ContactController extends Controller
             'services_requested' => ['nullable', 'array'],
             'services_requested.*' => ['string', 'max:255'],
             'how_did_you_hear' => ['nullable', 'string', 'max:255'],
-            'message' => ['required', 'string'],
+            'message' => ['nullable', 'string'],
         ]);
 
         $validated['services_requested'] = $validated['services_requested'] ?? [];

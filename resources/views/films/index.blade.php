@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('title', 'Films — ' . ($siteSettings->site_name ?: 'Weddings By Christian'))
-@section('page_css', asset('css/films-index.css'))
+@section('page_css', asset('css/films-index.css') . '?v=' . @filemtime(public_path('css/films-index.css')))
 
 @section('content')
 <main class="page-top-spacing">

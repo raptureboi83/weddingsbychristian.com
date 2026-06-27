@@ -1,5 +1,9 @@
 <section id="contact" class="section">
     <div class="container container-narrow">
+        @php
+            $isContactFormOpen = $errors->any() || filled(session('status')) || !empty(old());
+        @endphp
+
         <div class="contact-wrap contact-wrap-spaced">
             <div>
                 <div class="eyebrow">{{ $contactSection?->eyebrow ?: 'Contact' }}</div>
@@ -31,8 +35,47 @@
                     </div>
                 </div>
 
-                @include('partials.contact-form')
+                <button
+                    type="button"
+                    class="contact-email-cta contact-form-toggle"
+                    data-contact-form-toggle
+                    aria-controls="contact-form-panel"
+                    aria-expanded="{{ $isContactFormOpen ? 'true' : 'false' }}"
+                >
+                    Email About Your Date
+                </button>
+                <p class="contact-email-note">
+                    Include your wedding date, venue, and anything you already know about timing.
+                    You can also email directly if you prefer.
+                </p>
+
+                <div
+                    id="contact-form-panel"
+                    class="contact-form-wrap{{ $isContactFormOpen ? '' : ' is-collapsed' }}"
+                    data-contact-form-panel
+                >
+                    @include('partials.contact-form')
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        (function () {
+            var toggle = document.querySelector('[data-contact-form-toggle]');
+            var panel = document.querySelector('[data-contact-form-panel]');
+
+            if (!toggle || !panel || toggle.dataset.bound === '1') {
+                return;
+            }
+
+            toggle.dataset.bound = '1';
+
+            toggle.addEventListener('click', function () {
+                var isCollapsed = panel.classList.contains('is-collapsed');
+                panel.classList.toggle('is-collapsed', !isCollapsed);
+                toggle.setAttribute('aria-expanded', isCollapsed ? 'true' : 'false');
+            });
+        })();
+    </script>
 </section>

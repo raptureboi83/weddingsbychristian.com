@@ -25,11 +25,12 @@
             --elevated-bg: #131218;
             --border-soft: rgba(255, 255, 255, 0.10);
             --border-softer: rgba(255, 255, 255, 0.05);
-            --text-muted: rgba(246, 245, 241, 0.72);
-            --text-faint: rgba(246, 245, 241, 0.45);
+            --text-muted: #8a8a8a;
+            --text-faint: #8a8a8a;
             --success-bg: rgba(34, 197, 94, 0.10);
             --success-border: rgba(34, 197, 94, 0.30);
             --error-text: #fca5a5;
+            --nav-offset: 80px;
         }
 
         * {
@@ -38,7 +39,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 96px;
+            scroll-padding-top: var(--nav-offset);
         }
 
         body {
@@ -85,6 +86,16 @@
             max-width: 100%;
         }
 
+        #hero,
+        #about,
+        #films,
+        #packages,
+        #testimonials,
+        #vendors,
+        #contact {
+            scroll-margin-top: var(--nav-offset);
+        }
+
         .site-shell {
             min-height: 100vh;
             background: var(--dark-bg);
@@ -119,15 +130,16 @@
         .eyebrow {
             margin-bottom: 16px;
             font-size: 12px;
-            letter-spacing: 0.3em;
+            line-height: 16px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             color: var(--cool-gray);
         }
 
         .section-title {
-            font-size: clamp(2rem, 5vw, 4.5rem);
-            line-height: 0.98;
-            letter-spacing: 0.02em;
+            font-size: 36px;
+            line-height: 40px;
+            letter-spacing: normal;
         }
 
         .section-copy {
@@ -135,25 +147,25 @@
             max-width: 720px;
             color: var(--text-muted);
             font-size: 16px;
-            line-height: 1.8;
+            line-height: 24px;
         }
 
         .site-nav {
             position: fixed;
             inset: 0 0 auto 0;
             z-index: 1000;
-            min-height: 80px;
+            min-height: var(--nav-offset);
             background: rgba(10, 9, 14, 0.82);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .site-nav-inner {
-            min-height: 80px;
+            min-height: var(--nav-offset);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            gap: 16px;
         }
 
         .site-brand {
@@ -164,10 +176,10 @@
         }
 
         .site-brand-text {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: normal;
+            text-transform: none;
             color: var(--warm-beige);
         }
 
@@ -180,12 +192,14 @@
         .site-nav-links {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 20px;
         }
 
         .site-nav-links a {
+            font-family: 'Inter', sans-serif;
             font-size: 12px;
-            letter-spacing: 0.1em;
+            line-height: 16px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             color: var(--text-faint);
             transition: color 0.25s ease;
@@ -197,7 +211,7 @@
         }
 
         .site-nav-socials {
-            padding-left: 16px;
+            padding-left: 20px;
             border-left: 1px solid rgba(255, 255, 255, 0.10);
         }
 
@@ -220,8 +234,8 @@
         }
 
         .social-links svg {
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             fill: currentColor;
         }
 
@@ -258,127 +272,43 @@
         }
 
         .site-mobile-menu {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(10, 9, 14, 0.97);
+            display: none;
+            position: fixed;
+            top: var(--nav-offset);
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(10, 9, 14, 0.96);
             backdrop-filter: blur(12px);
         }
 
         .site-mobile-menu[hidden] {
-            display: none;
+            display: none !important;
         }
 
         .site-mobile-menu-links {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            padding: 24px 0 20px;
+            display: grid;
+            gap: 20px;
         }
 
         .site-mobile-menu-links a {
-            font-size: 14px;
-            letter-spacing: 0.12em;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             color: var(--warm-beige);
         }
 
         .site-mobile-socials {
-            padding-top: 16px;
-            padding-bottom: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
         }
 
-        .card {
-            border: 1px solid var(--border-soft);
-            background: rgba(19, 18, 24, 0.6);
-        }
-
-        .button-primary,
-        .button-secondary,
-        .button-ghost {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 12px 24px;
-            font-size: 14px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.25s ease;
-        }
-
-        .button-primary {
-            background: var(--warm-beige);
-            color: var(--dark-bg);
-        }
-
-        .button-primary:hover {
-            background: var(--cream);
-        }
-
-        .button-secondary {
-            border: 1px solid var(--border-soft);
-            color: var(--warm-beige);
-        }
-
-        .button-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .button-ghost {
-            color: var(--warm-beige);
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .page-top-spacing {
-            padding-top: 80px;
-        }
-
-        .footer-bar {
-            border-top: 1px solid var(--border-soft);
-            padding-top: 48px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .footer-grid > div:nth-child(2) {
-            text-align: center;
-        }
-
-        .footer-grid > div:nth-child(3) {
-            justify-self: start;
-        }
-
-        @media (min-width: 900px) {
-            .container {
-                padding-left: 40px;
-                padding-right: 40px;
-            }
-
-            .section {
-                padding-top: 128px;
-                padding-bottom: 128px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-
-            .footer-grid > div:nth-child(1) {
-                text-align: left;
-            }
-
-            .footer-grid > div:nth-child(3) {
-                justify-self: end;
-            }
-        }
-
-        @media (max-width: 899px) {
+        @media (max-width: 900px) {
             .site-nav-links {
                 display: none;
             }
@@ -388,19 +318,34 @@
                 align-items: center;
                 justify-content: center;
             }
+
+            .site-mobile-menu:not([hidden]) {
+                display: block;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .site-mobile-menu {
+                display: none !important;
+            }
         }
     </style>
 
-    @hasSection('page_css')
+    @if (trim($__env->yieldContent('page_css')))
         <link rel="stylesheet" href="@yield('page_css')">
     @endif
-
-    @stack('styles')
 </head>
 <body>
     <div class="site-shell">
         @include('partials.site-header', ['siteSettings' => $siteSettings])
-        @yield('content')
+
+        <main>
+            @yield('content')
+        </main>
     </div>
+
+    @if (trim($__env->yieldContent('page_js')))
+        @yield('page_js')
+    @endif
 </body>
 </html>

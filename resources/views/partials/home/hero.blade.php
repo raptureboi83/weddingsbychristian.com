@@ -14,20 +14,16 @@
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <div class="hero-label">{{ $heroDescription }}</div>
-                <h1 class="hero-title">{{ $heroTitle }}</h1>
-            </div>
+        <div class="hero-text">
+            @if (filled($heroEyebrow ?? null))
+                <div class="hero-label">{{ $heroEyebrow }}</div>
+            @endif
 
-            <a href="{{ route('films.index') }}" class="hero-cta">
-                <span class="hero-cta-text">See the films</span>
-                <span class="hero-cta-icon">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                        <path d="M3 2L9 6L3 10V2Z" fill="currentColor" />
-                    </svg>
-                </span>
-            </a>
+            <h1 class="hero-title">{{ $heroTitle }}</h1>
+
+            @if (filled($heroDescription ?? null))
+                <p class="hero-copy">{{ $heroDescription }}</p>
+            @endif
         </div>
     </div>
 </section>

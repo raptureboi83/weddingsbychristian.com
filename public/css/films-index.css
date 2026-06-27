@@ -2,8 +2,8 @@
     position: relative;
     overflow: hidden;
     background: var(--dark-bg);
-    padding-top: 160px;
-    padding-bottom: 80px;
+    padding-top: 120px;
+    padding-bottom: 64px;
 }
 
 .page-hero-glow {
@@ -35,22 +35,23 @@
 
 .page-title {
     max-width: 920px;
-    font-size: clamp(2.75rem, 7vw, 6rem);
-    line-height: 0.95;
+    font-size: 60px;
+    line-height: 60px;
+    letter-spacing: normal;
 }
 
 .page-copy {
     margin-top: 24px;
     max-width: 720px;
-    color: var(--cool-gray);
+    color: var(--warm-beige);
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 24px;
 }
 
 .side-card {
     border: 1px solid var(--border-soft);
     background: rgba(19, 18, 24, 0.6);
-    padding: 28px;
+    padding: 24px;
 }
 
 .side-card-title {
@@ -62,9 +63,9 @@
 
 .side-card-copy {
     margin-top: 16px;
-    color: var(--cool-gray);
-    font-size: 15px;
-    line-height: 1.7;
+    color: var(--warm-beige);
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .side-card-actions {
@@ -74,9 +75,34 @@
     gap: 12px;
 }
 
+.side-card-actions .button-primary,
+.side-card-actions .button-secondary {
+    display: inline-flex;
+    width: 100%;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 4px;
+    background: var(--cream);
+    color: var(--dark-bg);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.side-card-actions .button-primary:hover,
+.side-card-actions .button-secondary:hover {
+    background: var(--warm-beige);
+    color: var(--dark-bg);
+}
+
 .films-section {
     padding-top: 96px;
-    padding-bottom: 128px;
+    padding-bottom: 96px;
     background: #202020;
 }
 
@@ -119,13 +145,17 @@
 }
 
 .film-card-title {
-    font-size: 1.35rem;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.45px;
+    font-weight: 300;
 }
 
 .film-meta {
     margin-top: 8px;
     color: var(--cool-gray);
     font-size: 12px;
+    line-height: 16px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -133,8 +163,13 @@
 .film-blurb {
     margin-top: 16px;
     color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.films-heading .section-title {
+    font-size: 36px;
+    line-height: 40px;
 }
 
 @media (min-width: 1024px) {

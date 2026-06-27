@@ -6,8 +6,8 @@
     position: relative;
     overflow: hidden;
     background: var(--dark-bg);
-    padding-top: 160px;
-    padding-bottom: 32px;
+    padding-top: 120px;
+    padding-bottom: 48px;
 }
 
 .contact-page-glow {
@@ -39,16 +39,17 @@
 }
 
 .contact-page-title {
-    font-size: clamp(2.75rem, 7vw, 6rem);
-    line-height: 0.95;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 1.92px;
 }
 
 .contact-page-copy {
     margin-top: 24px;
     max-width: 720px;
     color: var(--cool-gray);
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 22.75px;
 }
 
 .contact-page-wrap {
@@ -61,7 +62,7 @@
     max-width: 820px;
     border: 1px solid var(--border-soft);
     background: rgba(19, 18, 24, 0.6);
-    padding: 32px;
+    padding: 24px;
 }
 
 .contact-info-grid {
@@ -85,14 +86,15 @@
 }
 
 .contact-info-value {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 22.75px;
     color: var(--warm-beige);
 }
 
 .contact-form-alert {
     margin-top: 24px;
     margin-bottom: 24px;
-    padding: 16px 20px;
+    padding: 14px 16px;
     font-size: 14px;
 }
 
@@ -124,7 +126,7 @@
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.10);
     background: var(--dark-bg);
-    padding: 14px 16px;
+    padding: 12px 14px;
     color: var(--warm-beige);
 }
 
@@ -160,7 +162,7 @@
     align-items: center;
     gap: 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 14px 16px;
+    padding: 12px 14px;
     color: var(--text-muted);
 }
 
