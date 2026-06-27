@@ -112,7 +112,15 @@
     <!-- Current selection info -->
     <template x-if="selectedPath && !fileName">
         <div class="media-picker-library__selected">
-            <a :href="selectedPreviewUrl" target="_blank" class="media-picker-library__selected-link" x-text="selectedName || selectedPath"></a>
+            <template x-if="selectedIsImage">
+                <img :src="selectedPreviewUrl" class="media-picker-library__preview-media" style="max-height:8rem;" />
+            </template>
+            <template x-if="!selectedIsImage && selectedIsVideo">
+                <video :src="selectedPreviewUrl" controls class="media-picker-library__preview-media" style="max-height:8rem;"></video>
+            </template>
+            <template x-if="!selectedIsImage && !selectedIsVideo">
+                <a :href="selectedPreviewUrl" target="_blank" class="media-picker-library__selected-link" x-text="selectedName || selectedPath"></a>
+            </template>
         </div>
     </template>
 
@@ -304,6 +312,9 @@
                 init() {
                     if (this.selectedPath) {
                         this.selectedName = this.selectedPath.split('/').pop();
+                        this.selectedPreviewUrl = '/storage/' + this.selectedPath;
+                        this.selectedIsImage = /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico)$/i.test(this.selectedPath);
+                        this.selectedIsVideo = /\.(mp4|webm|mov|avi|mkv|flv|wmv|m4v)$/i.test(this.selectedPath);
                     }
                 },
 
@@ -412,6 +423,8 @@
                         this.selectedPath = payload.path;
                         this.selectedName = file.name;
                         this.selectedPreviewUrl = payload.url;
+                        this.selectedIsImage = this.isImage;
+                        this.selectedIsVideo = this.isVideo;
                         this.progress = 100;
                         this.status = 'Upload complete.';
                         this.errorMessage = '';
