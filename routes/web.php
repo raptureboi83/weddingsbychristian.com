@@ -7,6 +7,13 @@ use App\Http\Controllers\TestimonialsController;
 use App\Http\Controllers\VendorsController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/__oc', function () {
+    if (function_exists('opcache_reset')) {
+        opcache_reset();
+    }
+    return response('OK', 200);
+});
+
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('/films', [FilmsController::class, 'index'])->name('films.index');

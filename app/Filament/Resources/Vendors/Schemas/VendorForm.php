@@ -155,6 +155,15 @@ class VendorForm
                     ->schema([
                         VisualMediaPicker::make('logo_path', 'Logo image', 'vendors/logos', imageOnly: true),
 
+                        Select::make('logo_bg')
+                            ->label('Logo background')
+                            ->helperText('Choose a background colour so the logo is visible against it.')
+                            ->options([
+                                'white' => 'White',
+                                'black' => 'Black',
+                            ])
+                            ->default('white'),
+
                         VisualMediaPicker::make('cover_image_path', 'Cover image', 'vendors/covers', imageOnly: true),
                     ])
                     ->columns(2),

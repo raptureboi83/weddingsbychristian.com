@@ -22,6 +22,7 @@ class Vendor extends Model
         'contact_phone',
         'location',
         'logo_path',
+        'logo_bg',
         'cover_image_path',
         'sort_order',
         'is_published',
