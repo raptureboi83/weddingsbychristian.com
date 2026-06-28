@@ -2,6 +2,8 @@
 
 @section('title', 'Testimonials — ' . ($siteSettings->site_name ?: 'Weddings By Christian'))
 
+@section('page_css', asset('css/home.css') . '?v=' . @filemtime(public_path('css/home.css')))
+
 @section('content')
 <main>
     <section id="testimonials" class="section section-alt-2">

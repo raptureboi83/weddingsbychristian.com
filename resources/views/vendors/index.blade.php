@@ -2,6 +2,8 @@
 
 @section('title', 'Vendors — ' . ($siteSettings->site_name ?: 'Weddings By Christian'))
 
+@section('page_css', asset('css/home.css') . '?v=' . @filemtime(public_path('css/home.css')))
+
 @section('content')
 <main>
     <section id="vendors" class="section section-alt-3">
