@@ -18,7 +18,7 @@
         ['label' => 'Films', 'href' => $isHome ? '#films' : url('/#films')],
         ['label' => 'Packages', 'href' => $isHome ? '#packages' : url('/#packages')],
         ['label' => 'Testimonials', 'href' => $isHome ? '#testimonials' : url('/#testimonials')],
-        ['label' => 'Vendors', 'href' => $isHome ? '#vendors' : url('/#vendors')],
+        ['label' => 'Vendors', 'href' => url('/vendors')],
         ['label' => 'Contact', 'href' => $isHome ? '#contact' : url('/#contact')],
     ];
 
