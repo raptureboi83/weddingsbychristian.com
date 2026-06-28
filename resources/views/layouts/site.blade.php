@@ -358,6 +358,8 @@
     @if (trim($__env->yieldContent('page_css')))
         <link rel="stylesheet" href="@yield('page_css')">
     @endif
+
+    @stack('styles')
 </head>
 <body>
     <div class="site-shell">
