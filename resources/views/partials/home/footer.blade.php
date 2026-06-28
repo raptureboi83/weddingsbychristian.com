@@ -4,7 +4,7 @@
             <div class="footer-grid">
                 <div class="footer-col footer-col-left">
                     <div class="footer-note footer-copyright">
-                        {{ $siteSettings->footer_copyright_text ?: '© 2026 Weddings By Christian' }}
+                        {!! str_replace('©', '<a href="/admin" style="text-decoration:none;color:inherit">&copy;</a>', e($siteSettings->footer_copyright_text ?: '© 2026 Weddings By Christian')) !!}
                     </div>
                 </div>
 
