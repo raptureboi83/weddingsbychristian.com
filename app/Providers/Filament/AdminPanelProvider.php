@@ -13,7 +13,6 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -45,7 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->renderHook(
                 'panels::global-search.before',
-                fn () => Blade::render('<a href="{{ $url }}" target="_blank" class="filament-global-search-link" title="View site">&larrhk; View Site</a>', ['url' => config('app.url')]),
+                fn (): string => '<a href="' . config('app.url') . '" target="_blank" style="display:inline-flex;align-items:center;gap:0.25rem;padding:0 0.75rem;font-size:0.875rem;font-weight:500;color:var(--gray-400);text-decoration:none;white-space:nowrap">&larrhk; View Site</a>',
             )
             ->middleware([
                 EncryptCookies::class,
