@@ -42,10 +42,6 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 \App\Filament\Widgets\DashboardStatsWidget::class,
             ])
-            ->renderHook(
-                'panels::global-search.before',
-                fn (): string => '<a href="' . config('app.url') . '" target="_blank" style="display:inline-flex;align-items:center;gap:0.25rem;padding:0 0.75rem;font-size:0.875rem;font-weight:500;color:var(--gray-400);text-decoration:none;white-space:nowrap">&larrhk; View Site</a>',
-            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
