@@ -53,11 +53,16 @@
     }
 
     .page-vendors .vendor-category {
+        margin-top: 0;
         display: block;
     }
 
     .page-vendors .vendor-category.is-hidden {
         display: none;
+    }
+
+    .page-vendors .vendor-category:not(.is-hidden) ~ .vendor-category:not(.is-hidden) {
+        margin-top: 56px;
     }
 
     @media (max-width: 768px) {
