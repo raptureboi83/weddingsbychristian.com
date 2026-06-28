@@ -30,7 +30,7 @@ class EditContactSection extends Page implements HasForms
 
     public static function shouldRegisterNavigation(): bool
     {
-        return false;
+        return true;
     }
 
     protected string $view = 'filament.pages.edit-contact-section';
