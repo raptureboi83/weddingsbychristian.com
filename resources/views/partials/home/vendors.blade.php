@@ -44,11 +44,5 @@
             @endif
         @endforeach
 
-        <div class="center-link">
-            <a href="{{ route('vendors.index') }}">
-                <span>See More Vendors</span>
-                <i></i>
-            </a>
-        </div>
     </div>
 </section>
