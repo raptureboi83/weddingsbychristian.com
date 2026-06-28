@@ -11,7 +11,7 @@
         <div class="testimonial-grid">
             @foreach ($testimonials as $testimonial)
                 <article class="testimonial-card">
-                    <blockquote>“{{ $testimonial->quote }}”</blockquote>
+                    <blockquote>&ldquo;{{ $testimonial->quote }}&rdquo;</blockquote>
 
                     <div class="testimonial-author">
                         <strong>{{ $testimonial->couple_names }}</strong>
@@ -21,6 +21,13 @@
                     </div>
                 </article>
             @endforeach
+        </div>
+
+        <div class="center-link">
+            <a href="{{ route('testimonials.index') }}">
+                <span>See More Testimonials</span>
+                <i></i>
+            </a>
         </div>
     </div>
 </section>
