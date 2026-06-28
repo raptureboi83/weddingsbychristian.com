@@ -3,34 +3,17 @@
 @section('title', 'Vendors — ' . ($siteSettings->site_name ?: 'Weddings By Christian'))
 
 @section('content')
-<main class="page-top-spacing">
-    <section class="page-hero">
-        <div class="page-hero-glow"></div>
-        <div class="container">
-            <div class="page-hero-grid">
-                <div>
-                    <div class="eyebrow">Partners</div>
-                    <h1 class="page-title">Our Preferred Vendors</h1>
-                    <div class="page-copy">
-                        If you would like to connect with anyone, please click their name for a website.
-                    </div>
-                </div>
-                <div class="side-card">
-                    <div class="side-card-title">Looking for vendors?</div>
-                    <div class="side-card-copy">
-                        These are vendors we trust and love working with.
-                    </div>
-                    <div class="side-card-actions">
-                        <a href="{{ route('home') }}" class="button-primary">Back to home</a>
-                        <a href="{{ route('contact.index') }}" class="button-secondary">Reach out</a>
-                    </div>
+<main>
+    <section id="vendors" class="section section-alt-3">
+        <div class="container container-narrow">
+            <div class="section-heading section-heading-centered section-heading-spaced">
+                <div class="eyebrow">Partners</div>
+                <h1 class="section-title">Our Preferred Vendors</h1>
+                <div class="section-copy section-copy-centered">
+                    If you would like to connect with anyone, please click their name for a website.
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="section">
-        <div class="container container-narrow">
             @forelse ($vendorCategories as $category)
                 @if ($category->vendors->isNotEmpty())
                     <div class="vendor-category">
