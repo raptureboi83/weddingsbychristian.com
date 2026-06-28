@@ -35,14 +35,17 @@ class VendorsTable
 
                 TextColumn::make('slug')
                     ->searchable()
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('website_url')
                     ->label('Website')
                     ->limit(40)
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('location')
+                    ->sortable()
                     ->toggleable(),
 
                 CheckboxColumn::make('is_featured')

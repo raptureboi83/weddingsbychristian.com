@@ -31,10 +31,12 @@ class FilmsTable
 
                 TextColumn::make('location')
                     ->searchable()
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('venue')
                     ->searchable()
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('wedding_date')

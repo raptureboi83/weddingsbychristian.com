@@ -35,6 +35,7 @@ class TestimonialsTable
 
                 TextColumn::make('source_label')
                     ->label('Source')
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('wedding_date')

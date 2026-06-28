@@ -23,10 +23,12 @@ class ContactSubmissionsTable
 
                 TextColumn::make('email')
                     ->searchable()
+                    ->sortable()
                     ->copyable(),
 
                 TextColumn::make('phone')
                     ->searchable()
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('wedding_date')
@@ -36,6 +38,7 @@ class ContactSubmissionsTable
 
                 TextColumn::make('location')
                     ->searchable()
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('status')

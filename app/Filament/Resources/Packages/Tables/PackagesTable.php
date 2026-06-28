@@ -29,10 +29,12 @@ class PackagesTable
 
                 TextColumn::make('slug')
                     ->searchable()
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('price_label')
                     ->label('Price Label')
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('starting_price')
@@ -42,6 +44,7 @@ class PackagesTable
 
                 TextColumn::make('duration_label')
                     ->label('Duration')
+                    ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('items_count')
