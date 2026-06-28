@@ -373,5 +373,7 @@
     @if (trim($__env->yieldContent('page_js')))
         @yield('page_js')
     @endif
+
+    @stack('scripts')
 </body>
 </html>
