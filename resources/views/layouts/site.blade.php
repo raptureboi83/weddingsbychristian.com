@@ -32,6 +32,9 @@
         rel="stylesheet"
     />
 
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
     <style>
         :root {
             --cream: #e3dacb;
@@ -48,6 +51,8 @@
             --error-text: #fca5a5;
             --nav-offset: 80px;
         }
+
+        .grecaptcha-badge { visibility: hidden; }
 
         * {
             box-sizing: border-box;
@@ -200,9 +205,8 @@
         }
 
         .site-brand img {
-            max-height: 56px;
+            height: 48px;
             width: auto;
-            object-fit: contain;
         }
 
         .site-nav-links {

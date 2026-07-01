@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SiteSetting;
 use App\Models\VendorCategory;
+use App\Models\VendorsSection;
 use Illuminate\View\View;
 
 class VendorsController extends Controller
@@ -11,6 +12,10 @@ class VendorsController extends Controller
     public function index(): View
     {
         $siteSettings = SiteSetting::current();
+
+        $vendorsSection = VendorsSection::query()
+            ->where('is_published', true)
+            ->first();
 
         $vendorCategories = VendorCategory::query()
             ->where('is_published', true)
@@ -26,6 +31,7 @@ class VendorsController extends Controller
 
         return view('vendors.index', [
             'siteSettings' => $siteSettings,
+            'vendorsSection' => $vendorsSection,
             'vendorCategories' => $vendorCategories,
         ]);
     }

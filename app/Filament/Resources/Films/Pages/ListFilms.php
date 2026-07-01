@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Films\Pages;
 
 use App\Filament\Resources\Films\FilmResource;
-use App\Filament\Widgets\FilmsSectionWidget;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
@@ -16,17 +15,5 @@ class ListFilms extends ListRecords
         return [
             CreateAction::make(),
         ];
-    }
-
-    protected function getFooterWidgets(): array
-    {
-        return [
-            FilmsSectionWidget::make(),
-        ];
-    }
-
-    public function getFooterWidgetsColumns(): int
-    {
-        return 1;
     }
 }

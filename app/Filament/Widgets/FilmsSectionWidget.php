@@ -59,6 +59,42 @@ class FilmsSectionWidget extends Widget implements HasForms
                             ->rows(4)
                             ->columnSpanFull(),
 
+                        Section::make('Right Side CTA')
+                            ->description('Manage the right-side card content and links on the Films page.')
+                            ->columnSpanFull()
+                            ->schema([
+                                TextInput::make('cta_title')
+                                    ->label('CTA title')
+                                    ->placeholder('Looking for your own film?')
+                                    ->maxLength(255),
+
+                                Textarea::make('cta_copy')
+                                    ->label('CTA text')
+                                    ->rows(4)
+                                    ->columnSpanFull(),
+
+                                TextInput::make('cta_primary_label')
+                                    ->label('Primary button label')
+                                    ->placeholder('Back to home')
+                                    ->maxLength(255),
+
+                                TextInput::make('cta_primary_url')
+                                    ->label('Primary button URL')
+                                    ->placeholder('/')
+                                    ->maxLength(2048),
+
+                                TextInput::make('cta_secondary_label')
+                                    ->label('Secondary button label')
+                                    ->placeholder('Reach out')
+                                    ->maxLength(255),
+
+                                TextInput::make('cta_secondary_url')
+                                    ->label('Secondary button URL')
+                                    ->placeholder('/contact')
+                                    ->maxLength(2048),
+                            ])
+                            ->columns(2),
+
                         Toggle::make('is_published')
                             ->label('Show this section on the website')
                             ->default(true),

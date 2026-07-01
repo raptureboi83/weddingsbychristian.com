@@ -13,6 +13,7 @@ use App\Models\PackageSharedBlock;
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
 use App\Models\TestimonialsSection;
+use App\Models\Vendor;
 use App\Models\VendorCategory;
 use App\Models\VendorsSection;
 use Illuminate\View\View;
@@ -70,20 +71,22 @@ class HomeController extends Controller
 
         $testimonials = Testimonial::query()
             ->published()
+            ->featured()
             ->ordered()
             ->limit(3)
             ->get();
 
-        $vendorCategories = VendorCategory::query()
-            ->where('is_published', true)
-            ->with([
-                'vendors' => fn ($query) => $query
-                    ->where('is_published', true)
-                    ->orderBy('sort_order')
-                    ->orderBy('name'),
-            ])
-            ->orderBy('sort_order')
-            ->orderBy('name')
+        $vendorPreview = Vendor::query()
+            ->where('vendors.is_published', true)
+            ->select('vendors.*')
+            ->join('vendor_categories', 'vendor_categories.id', '=', 'vendors.vendor_category_id')
+            ->where('vendor_categories.is_published', true)
+            ->with(['category'])
+            ->orderBy('vendor_categories.sort_order')
+            ->orderBy('vendor_categories.name')
+            ->orderBy('vendors.sort_order')
+            ->orderBy('vendors.name')
+            ->limit(3)
             ->get();
 
         return view('welcome', [
@@ -98,7 +101,7 @@ class HomeController extends Controller
             'packageSharedBlocks' => $packageSharedBlocks,
             'films' => $films,
             'testimonials' => $testimonials,
-            'vendorCategories' => $vendorCategories,
+            'vendorPreview' => $vendorPreview,
             'contactSection' => $contactSection,
         ]);
     }

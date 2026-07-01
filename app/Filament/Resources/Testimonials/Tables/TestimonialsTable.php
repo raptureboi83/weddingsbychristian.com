@@ -16,12 +16,9 @@ class TestimonialsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->reorderable('sort_order')
             ->defaultSort('sort_order')
             ->columns([
-                TextColumn::make('sort_order')
-                    ->label('Order')
-                    ->sortable(),
-
                 TextColumn::make('couple_names')
                     ->label('Couple')
                     ->searchable()

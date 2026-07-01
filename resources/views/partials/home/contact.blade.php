@@ -1,5 +1,5 @@
 <section id="contact" class="section">
-    <div class="container container-narrow">
+    <div class="container">
         @php
             $isContactFormOpen = $errors->any() || filled(session('status')) || !empty(old());
         @endphp

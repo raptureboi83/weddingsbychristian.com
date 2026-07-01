@@ -31,6 +31,11 @@ class Testimonial extends Model
         return $query->where('is_published', true);
     }
 
+    public function scopeFeatured(Builder $query): Builder
+    {
+        return $query->where('is_featured', true);
+    }
+
     public function scopeOrdered(Builder $query): Builder
     {
         return $query

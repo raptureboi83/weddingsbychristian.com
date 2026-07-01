@@ -32,6 +32,8 @@ class SiteSetting extends Model
         'contact_phone',
         'contact_based_in',
         'contact_form_recipient_email',
+
+        'email_logo_path',
     ];
 
     protected $casts = [

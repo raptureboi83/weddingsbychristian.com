@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\MediaFiles\Schemas;
 
+use App\Filament\Resources\MediaFiles\Pages\CreateMediaFile;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ViewField;
 use Filament\Schemas\Components\Section;
@@ -12,9 +13,11 @@ class MediaFileForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(['default' => 1, 'xl' => 2])
             ->components([
                 Section::make('File')
                     ->description('Upload a file or edit its details.')
+                    ->columnSpan(fn ($livewire) => $livewire instanceof CreateMediaFile ? 1 : 2)
                     ->schema([
                         ViewField::make('file_path')
                             ->label('File')
@@ -43,7 +46,21 @@ class MediaFileForm
                             ->maxLength(255)
                             ->columnSpanFull(),
                     ])
-                    ->columns(2),
+                    ->columns(['default' => 1, 'xl' => 2]),
+
+                Section::make('Bulk Upload')
+                    ->description('Drag and drop many files to upload them in one pass. Uploaded files are created in the media library automatically.')
+                    ->visible(fn ($livewire) => $livewire instanceof CreateMediaFile)
+                    ->columnSpan(['xl' => 1])
+                    ->schema([
+                        ViewField::make('bulk_upload')
+                            ->dehydrated(false)
+                            ->view('filament.forms.components.chunked-media-bulk-upload')
+                            ->viewData([
+                                'uploadDirectory' => 'media',
+                            ])
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }

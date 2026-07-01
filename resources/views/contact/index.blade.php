@@ -18,7 +18,7 @@
 
         <div class="container contact-page-container">
             <div class="contact-page-intro">
-                <div class="eyebrow">Contact</div>
+                <div class="eyebrow">{{ $contactSection?->eyebrow ?: 'Contact' }}</div>
                 <h1 class="page-title contact-page-title">{{ $title }}</h1>
                 <div class="page-copy contact-page-copy">
                     {{ $description }}

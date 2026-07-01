@@ -12,15 +12,10 @@
         gap: 40px;
     }
 
-    @media (min-width: 768px) {
-        .page-testimonials .testimonial-grid-full {
-            grid-template-columns: 1fr;
-        }
-    }
-
     @media (min-width: 1024px) {
         .page-testimonials .testimonial-grid-full {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 32px;
         }
     }
 
@@ -55,9 +50,13 @@
     <section id="testimonials" class="section section-alt-2 page-testimonials">
         <div class="container container-narrow">
             <div class="section-heading section-heading-centered section-heading-spaced">
-                <div class="eyebrow">Kind Words</div>
-                <h1 class="section-title">What Clients Are Saying</h1>
+                <div class="eyebrow">{{ $testimonialsSection?->eyebrow ?: 'Kind Words' }}</div>
+                <h1 class="section-title">{{ $testimonialsSection?->title ?: 'What Clients Are Saying' }}</h1>
             </div>
+
+            @if ($testimonialsSection?->description)
+                <div class="section-copy section-copy-centered">{{ $testimonialsSection->description }}</div>
+            @endif
 
             <div class="testimonial-grid testimonial-grid-full">
                 @forelse ($testimonials as $testimonial)

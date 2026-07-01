@@ -115,4 +115,10 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    'imap_host' => env('MAIL_IMAP_HOST'),
+    'imap_port' => env('MAIL_IMAP_PORT', '993'),
+    'imap_username' => env('MAIL_IMAP_USERNAME'),
+    'imap_password' => env('MAIL_IMAP_PASSWORD'),
+    'imap_encryption' => env('MAIL_IMAP_ENCRYPTION', 'ssl'),
+
 ];

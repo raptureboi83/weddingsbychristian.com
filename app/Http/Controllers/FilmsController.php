@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\FilmsSection;
 use App\Models\SiteSetting;
 use Illuminate\View\View;
 
@@ -11,6 +12,7 @@ class FilmsController extends Controller
     public function index(): View
     {
         $siteSettings = SiteSetting::current();
+        $filmsSection = FilmsSection::current();
 
         $featuredFilms = Film::query()
             ->homepagePreview()
@@ -22,6 +24,7 @@ class FilmsController extends Controller
 
         return view('films.index', [
             'siteSettings' => $siteSettings,
+            'filmsSection' => $filmsSection,
             'featuredFilms' => $featuredFilms,
             'archiveFilms' => $archiveFilms,
         ]);

@@ -29,7 +29,8 @@ class PackageSharedBlockForm
                             ->helperText('Choose the kind of content block you want to create.')
                             ->required()
                             ->options([
-                                'content' => 'Content',
+                                'content' => 'Content (full width)',
+                                'content-short' => 'Content (short span)',
                                 'faq' => 'FAQ',
                                 'note' => 'Note',
                                 'cta' => 'Call to Action',

@@ -1,15 +1,15 @@
 <section id="packages" class="section section-alt">
     <div class="container">
-        <div class="section-heading section-heading-centered section-heading-spaced">
+        <div class="section-heading section-heading-spaced">
             <div class="eyebrow">{{ $packagesSection?->eyebrow ?: 'Services' }}</div>
             <h2 class="section-title">{{ $packagesSection?->title ?: 'Wedding Film Collections' }}</h2>
 
             @if ($packagesSection?->description)
-                <div class="section-copy section-copy-centered">{{ $packagesSection->description }}</div>
+                <div class="section-copy">{{ $packagesSection->description }}</div>
             @endif
 
             @if ($packagesSection?->intro)
-                <div class="section-copy section-copy-centered section-copy-spaced">{{ $packagesSection->intro }}</div>
+                <div class="section-copy section-copy-spaced">{{ $packagesSection->intro }}</div>
             @endif
         </div>
 
@@ -49,28 +49,55 @@
                     @endif
                 </div>
             @endforeach
+
         </div>
 
         @if ($packageSharedBlocks->isNotEmpty())
-            <div class="shared-block-grid">
-                @foreach ($packageSharedBlocks as $block)
-                    <div class="shared-block-card">
-                        @if ($block->title)
-                            <h3>{{ $block->title }}</h3>
-                        @endif
+            @foreach ($packageSharedBlocks as $block)
+                @if ($block->block_type === 'content-short')
+                    <div class="shared-block-short-wrap">
+                        <div class="package-card shared-block-short-card">
+                            @if ($block->title)
+                                <h3>{{ $block->title }}</h3>
+                            @endif
 
-                        @if ($block->content)
-                            <div class="shared-block-copy shared-block-copy-preline">{{ $block->content }}</div>
-                        @endif
+                            @if ($block->content)
+                                <div class="shared-block-copy shared-block-copy-preline">{{ $block->content }}</div>
+                            @endif
 
-                        @if ($block->cta_label && $block->cta_url)
-                            <div class="shared-block-cta">
-                                <a href="{{ $block->cta_url }}" class="button-primary">{{ $block->cta_label }}</a>
-                            </div>
-                        @endif
+                            @if ($block->cta_label && $block->cta_url)
+                                <div class="shared-block-cta">
+                                    <a href="{{ $block->cta_url }}" class="button-primary">{{ $block->cta_label }}</a>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-                @endforeach
-            </div>
+                @endif
+            @endforeach
+        @endif
+
+        @if ($packageSharedBlocks->isNotEmpty())
+            @foreach ($packageSharedBlocks as $block)
+                @if ($block->block_type !== 'content-short')
+                    <div class="shared-block-grid">
+                        <div class="shared-block-card">
+                            @if ($block->title)
+                                <h3>{{ $block->title }}</h3>
+                            @endif
+
+                            @if ($block->content)
+                                <div class="shared-block-copy shared-block-copy-preline">{{ $block->content }}</div>
+                            @endif
+
+                            @if ($block->cta_label && $block->cta_url)
+                                <div class="shared-block-cta">
+                                    <a href="{{ $block->cta_url }}" class="button-primary">{{ $block->cta_label }}</a>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         @endif
 
         @if ($packagesSection?->bottom_heading || $packagesSection?->bottom_description || ($packagesSection?->cta_label && $packagesSection?->cta_url))

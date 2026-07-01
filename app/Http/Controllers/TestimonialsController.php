@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
+use App\Models\TestimonialsSection;
 use Illuminate\View\View;
 
 class TestimonialsController extends Controller
@@ -12,6 +13,10 @@ class TestimonialsController extends Controller
     {
         $siteSettings = SiteSetting::current();
 
+        $testimonialsSection = TestimonialsSection::query()
+            ->where('is_published', true)
+            ->first();
+
         $testimonials = Testimonial::query()
             ->published()
             ->ordered()
@@ -19,6 +24,7 @@ class TestimonialsController extends Controller
 
         return view('testimonials.index', [
             'siteSettings' => $siteSettings,
+            'testimonialsSection' => $testimonialsSection,
             'testimonials' => $testimonials,
         ]);
     }

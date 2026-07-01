@@ -38,7 +38,7 @@
 
         <div class="center-link">
             <a href="{{ route('films.index') }}">
-                <span>See More Films</span>
+                <span>View All Films</span>
                 <i></i>
             </a>
         </div>

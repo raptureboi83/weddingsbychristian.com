@@ -14,3 +14,61 @@
 [23-Jun-2026 11:51:17 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.3.0". You are running 8.1.34. in /home/weddi133/weddingsbychristian.com/vendor/composer/platform_check.php on line 24
 [23-Jun-2026 13:42:59 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.3.0". You are running 8.1.34. in /home/weddi133/weddingsbychristian.com/vendor/composer/platform_check.php on line 24
 [23-Jun-2026 13:42:59 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.3.0". You are running 8.1.34. in /home/weddi133/weddingsbychristian.com/vendor/composer/platform_check.php on line 24
+[30-Jun-2026 12:50:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/artisan on line 10
+[30-Jun-2026 12:50:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/artisan on line 10
+[30-Jun-2026 12:50:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/weddi133/weddingsbychristian.com/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/artisan:10
+Stack trace:
+#0 {main}
+  thrown in /home/weddi133/weddingsbychristian.com/artisan on line 10
+[30-Jun-2026 13:00:03 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/artisan on line 10
+[30-Jun-2026 13:00:03 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/autoload.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/artisan on line 10
+[30-Jun-2026 13:00:03 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/weddi133/weddingsbychristian.com/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/artisan:10
+Stack trace:
+#0 {main}
+  thrown in /home/weddi133/weddingsbychristian.com/artisan on line 10
+[30-Jun-2026 13:10:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:10:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:10:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/weddi133/weddingsbychristian.com/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php(45): {closure}('667aeda72477189...', '/home/weddi133/...')
+#1 /home/weddi133/weddingsbychristian.com/vendor/autoload.php(25): ComposerAutoloaderInit36793882908b6cbdd344b5a4840231db::getLoader()
+#2 /home/weddi133/weddingsbychristian.com/artisan(10): require('/home/weddi133/...')
+#3 {main}
+  thrown in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:20:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/composer/../laravel/framework/src/Illuminate/Collections/functions.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:20:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/composer/../laravel/framework/src/Illuminate/Collections/functions.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:20:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/weddi133/weddingsbychristian.com/vendor/composer/../laravel/framework/src/Illuminate/Collections/functions.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php(45): {closure}('476ca15b8d69b04...', '/home/weddi133/...')
+#1 /home/weddi133/weddingsbychristian.com/vendor/autoload.php(25): ComposerAutoloaderInit36793882908b6cbdd344b5a4840231db::getLoader()
+#2 /home/weddi133/weddingsbychristian.com/artisan(10): require('/home/weddi133/...')
+#3 {main}
+  thrown in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:30:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/composer/../nunomaduro/collision/src/Adapters/Phpunit/Autoload.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:30:02 UTC] PHP Warning:  require(/home/weddi133/weddingsbychristian.com/vendor/composer/../nunomaduro/collision/src/Adapters/Phpunit/Autoload.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:30:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/weddi133/weddingsbychristian.com/vendor/composer/../nunomaduro/collision/src/Adapters/Phpunit/Autoload.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php(45): {closure}('a1cfe24d14977df...', '/home/weddi133/...')
+#1 /home/weddi133/weddingsbychristian.com/vendor/autoload.php(25): ComposerAutoloaderInit36793882908b6cbdd344b5a4840231db::getLoader()
+#2 /home/weddi133/weddingsbychristian.com/artisan(10): require('/home/weddi133/...')
+#3 {main}
+  thrown in /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php on line 41
+[30-Jun-2026 13:40:02 UTC] PHP Warning:  include(/home/weddi133/weddingsbychristian.com/vendor/composer/../nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/ClassLoader.php on line 576
+[30-Jun-2026 13:40:02 UTC] PHP Warning:  include(/home/weddi133/weddingsbychristian.com/vendor/composer/../nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/ClassLoader.php on line 576
+[30-Jun-2026 13:40:02 UTC] PHP Warning:  include(): Failed opening '/home/weddi133/weddingsbychristian.com/vendor/composer/../nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php' for inclusion (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/vendor/composer/ClassLoader.php on line 576
+[30-Jun-2026 13:40:02 UTC] PHP Fatal error:  Uncaught Error: Class "NunoMaduro\Collision\Adapters\Phpunit\Subscribers\EnsurePrinterIsRegisteredSubscriber" not found in /home/weddi133/weddingsbychristian.com/vendor/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php:11
+Stack trace:
+#0 /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php(41): require()
+#1 /home/weddi133/weddingsbychristian.com/vendor/composer/autoload_real.php(45): {closure}('a1cfe24d14977df...', '/home/weddi133/...')
+#2 /home/weddi133/weddingsbychristian.com/vendor/autoload.php(25): ComposerAutoloaderInit36793882908b6cbdd344b5a4840231db::getLoader()
+#3 /home/weddi133/weddingsbychristian.com/artisan(10): require('/home/weddi133/...')
+#4 {main}
+  thrown in /home/weddi133/weddingsbychristian.com/vendor/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php on line 11
+[30-Jun-2026 13:50:02 UTC] PHP Warning:  include(/home/weddi133/weddingsbychristian.com/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Http/Middleware/Concerns/ExcludesPaths.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/ClassLoader.php on line 576
+[30-Jun-2026 13:50:02 UTC] PHP Warning:  include(/home/weddi133/weddingsbychristian.com/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Http/Middleware/Concerns/ExcludesPaths.php): Failed to open stream: No such file or directory in /home/weddi133/weddingsbychristian.com/vendor/composer/ClassLoader.php on line 576
+[30-Jun-2026 13:50:02 UTC] PHP Warning:  include(): Failed opening '/home/weddi133/weddingsbychristian.com/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Http/Middleware/Concerns/ExcludesPaths.php' for inclusion (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home/weddi133/weddingsbychristian.com/vendor/composer/ClassLoader.php on line 576
+[30-Jun-2026 13:50:02 UTC] PHP Fatal error:  Trait "Illuminate\Foundation\Http\Middleware\Concerns\ExcludesPaths" not found in /home/weddi133/weddingsbychristian.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php on line 13
+[01-Jul-2026 14:56:39 UTC] PHP Fatal error:  Could not check compatibility between App\Filament\Resources\Vendors\RelationManagers\SocialLinksRelationManager::form(Filament\Forms\Form $form): Filament\Forms\Form and Filament\Resources\RelationManagers\RelationManager::form(Filament\Schemas\Schema $schema): Filament\Schemas\Schema, because class Filament\Forms\Form is not available in /home/weddi133/weddingsbychristian.com/app/Filament/Resources/Vendors/RelationManagers/SocialLinksRelationManager.php on line 17
+[01-Jul-2026 17:11:11 UTC] PHP Parse error:  syntax error, unexpected token "=", expecting variable in app/Filament/Resources/MediaFiles/Pages/CreateMediaFile.php on line 11
+[01-Jul-2026 17:34:23 UTC] PHP Parse error:  syntax error, unexpected token "=" in app/Http/Controllers/FilmsController.php on line 14
+[01-Jul-2026 17:53:17 UTC] PHP Parse error:  syntax error, unexpected token "=" in app/Http/Controllers/TestimonialsController.php on line 15

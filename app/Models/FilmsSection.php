@@ -10,6 +10,12 @@ class FilmsSection extends Model
         'eyebrow',
         'title',
         'description',
+        'cta_title',
+        'cta_copy',
+        'cta_primary_label',
+        'cta_primary_url',
+        'cta_secondary_label',
+        'cta_secondary_url',
         'is_published',
     ];
 

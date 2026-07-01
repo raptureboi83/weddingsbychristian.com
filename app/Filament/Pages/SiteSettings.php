@@ -177,6 +177,9 @@ class SiteSettings extends Page implements HasForms
                             ->placeholder('hello@weddingsbychristian.com')
                             ->email()
                             ->maxLength(255),
+
+                        VisualMediaPicker::make('email_logo_path', 'Email logo', 'email-logos', imageOnly: true)
+                            ->columnSpanFull(),
                     ])
                     ->columns(2),
             ]);

@@ -41,9 +41,14 @@ class Vendor extends Model
         return $this->belongsTo(VendorCategory::class, 'vendor_category_id');
     }
 
+    public function socialLinks()
+    {
+        return $this->hasMany(VendorSocialLink::class);
+    }
+
     public function scopePublished(Builder $query): Builder
     {
-        return $query->where('is_published', true);
+        return $query->where('vendors.is_published', true);
     }
 
     public function scopeFeatured(Builder $query): Builder

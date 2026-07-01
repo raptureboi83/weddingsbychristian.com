@@ -4,6 +4,51 @@
 @section('page_css', asset('css/films-index.css') . '?v=' . @filemtime(public_path('css/films-index.css')))
 
 @section('content')
+@php
+    $useCmsSection = (bool) ($filmsSection->is_published ?? true);
+
+
+
+    $heroEyebrow = $useCmsSection && filled($filmsSection->eyebrow)
+        ? $filmsSection->eyebrow
+        : 'SELECTED WORK';
+
+    $heroTitle = $useCmsSection && filled($filmsSection->title)
+        ? $filmsSection->title
+        : 'Featured Films';
+
+    $heroCopy = $useCmsSection && filled($filmsSection->description)
+        ? $filmsSection->description
+        : 'These are real wedding stories, captured quietly and edited with intention.
+Some are emotional, some are joyful, some are both, but all of them are meant
+to feel honest and easy to come back to.';
+
+    $ctaTitle = $useCmsSection && filled($filmsSection->cta_title)
+        ? $filmsSection->cta_title
+        : 'Looking for your own film?';
+
+    $ctaCopy = $useCmsSection && filled($filmsSection->cta_copy)
+        ? $filmsSection->cta_copy
+        : 'If you want a wedding film that feels personal, calm, and beautifully put together,
+this is the best place to start.';
+
+    $ctaPrimaryLabel = $useCmsSection && filled($filmsSection->cta_primary_label)
+        ? $filmsSection->cta_primary_label
+        : 'Back to home';
+
+    $ctaPrimaryUrl = $useCmsSection && filled($filmsSection->cta_primary_url)
+        ? $filmsSection->cta_primary_url
+        : route('home');
+
+    $ctaSecondaryLabel = $useCmsSection && filled($filmsSection->cta_secondary_label)
+        ? $filmsSection->cta_secondary_label
+        : 'Reach out';
+
+    $ctaSecondaryUrl = $useCmsSection && filled($filmsSection->cta_secondary_url)
+        ? $filmsSection->cta_secondary_url
+        : route('contact.index');
+@endphp
+
 <main class="page-top-spacing">
     <section class="page-hero">
         <div class="page-hero-glow"></div>
@@ -11,26 +56,19 @@
         <div class="container">
             <div class="page-hero-grid">
                 <div>
-                    <div class="eyebrow">Films</div>
-                    <h1 class="page-title">Wedding films that feel true to the people in them</h1>
-                    <div class="page-copy">
-                        These are real wedding stories, captured quietly and edited with intention.
-                        Some are emotional, some are joyful, some are both, but all of them are meant
-                        to feel honest and easy to come back to.
-                    </div>
+                    <div class="eyebrow">{{ $heroEyebrow }}</div>
+                    <h1 class="page-title">{{ $heroTitle }}</h1>
+                    <div class="page-copy">{!! nl2br(e($heroCopy)) !!}</div>
                 </div>
 
                 <div class="side-card">
-                    <div class="side-card-title">Looking for your own film?</div>
+                    <div class="side-card-title">{{ $ctaTitle }}</div>
 
-                    <div class="side-card-copy">
-                        If you want a wedding film that feels personal, calm, and beautifully put together,
-                        this is the best place to start.
-                    </div>
+                    <div class="side-card-copy">{!! nl2br(e($ctaCopy)) !!}</div>
 
                     <div class="side-card-actions">
-                        <a href="{{ route('home') }}" class="button-primary">Back to home</a>
-                        <a href="{{ route('contact.index') }}" class="button-secondary">Reach out</a>
+                        <a href="{{ $ctaPrimaryUrl }}" class="button-primary">{{ $ctaPrimaryLabel }}</a>
+                        <a href="{{ $ctaSecondaryUrl }}" class="button-secondary">{{ $ctaSecondaryLabel }}</a>
                     </div>
                 </div>
             </div>
@@ -39,10 +77,6 @@
 
     <section class="films-section">
         <div class="container">
-            <div class="films-heading">
-                <div class="eyebrow">Cinematography</div>
-                <h2 class="section-title">All Films</h2>
-            </div>
 
             @php
                 $allFilms = $featuredFilms->concat($archiveFilms)->unique('id')->values();

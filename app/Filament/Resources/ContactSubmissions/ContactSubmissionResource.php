@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ContactSubmissions;
 
 use App\Filament\Resources\ContactSubmissions\Pages\EditContactSubmission;
 use App\Filament\Resources\ContactSubmissions\Pages\ListContactSubmissions;
+use App\Filament\Resources\ContactSubmissions\RelationManagers\RepliesRelationManager;
 use App\Filament\Resources\ContactSubmissions\Schemas\ContactSubmissionForm;
 use App\Filament\Resources\ContactSubmissions\Tables\ContactSubmissionsTable;
 use App\Models\ContactSubmission;
@@ -44,7 +45,7 @@ class ContactSubmissionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RepliesRelationManager::class,
         ];
     }
 

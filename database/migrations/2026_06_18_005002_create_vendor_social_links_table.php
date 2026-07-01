@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('vendor_social_links', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('vendor_id')->constrained()->cascadeOnDelete();
+            $table->string('platform'); // facebook, instagram, tiktok, youtube, twitter, linkedin, etc.
+            $table->string('url');
             $table->timestamps();
         });
     }

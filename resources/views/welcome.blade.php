@@ -86,7 +86,7 @@
     ])
 
     @include('partials.home.vendors', [
-        'vendorCategories' => $vendorCategories,
+        'vendorPreview' => $vendorPreview,
         'vendorsSection' => $vendorsSection,
     ])
 
